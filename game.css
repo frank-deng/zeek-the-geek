@@ -1,0 +1,69 @@
+body {
+	background-color: #CCC;
+  margin: 0;
+  padding: 0;
+  width: 640px;
+  height: 480px;
+  margin-left: auto;
+  margin-right: auto;
+	text-align: center;
+}
+div#nohtml5 {
+	text-align: left;
+}
+div#gamefinished, canvas#stage{
+	background-color: #FFF;
+	width: 612px;
+	height: 432px;
+  margin: 5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #000;
+
+  user-select: none;
+  moz-user-select: -moz-none;
+  -moz-user-select: -moz-none;
+  moz-user-select: none;
+  -moz-user-select: none;
+  -o-user-select:none;
+  -khtml-user-select:none;
+  -webkit-user-select:none;
+  -ms-user-select:none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+div#gamefinished {
+	display: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+div#footer {
+	width: 612px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+}
+div#footer div.item{
+	vertical-align: top;
+	display: inline-block;
+	width: 120px;
+}
+a.back{
+	text-decoration: none;
+	color: #000;
+}
+div#footer a.back{
+	float: right;
+}
+iframe#egg {
+	display: none;
+	background-color: #FFF;
+	width: 612px;
+	height: 432px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #000;
+}
+span#audio {
+	display: none;
+}
+

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='UTF-8'/>
+		<title>Fun Pack 1</title>
+
+		<link href='game.css' rel='stylesheet' type='text/css'/>
+		<script type='text/javascript' src='lib/jquery-2.1.0.min.js'></script>
+		<script type='text/javascript' src='lib/jquery.cookie.js'></script>
+
+		<script type='text/javascript' src='js/image.js'></script>
+		<script type='text/javascript' src='js/misc.js'></script>
+
+		<script type='text/javascript' src='js/stage.js'></script>
+		<script type='text/javascript' src='js/player.js'></script>
+		<script type='text/javascript' src='js/demon.js'></script>
+		<script type='text/javascript' src='js/object.js'></script>
+		<script type='text/javascript' src='js/maze.js'></script>
+		<script type='text/javascript' src='js/level.js'></script>
+		<script type='text/javascript' src='js/game.js'></script>
+
+		<!--Level data file-->
+		<script type='text/javascript' src='funpack1.js'></script>
+
+		<script type='text/javascript'>
+			packName = 'funpack1';
+			$(window).load(function(){
+				new Game(packName, levelData);
+			});
+		</script>
+	</head>
+	<body>
+		<canvas id='stage' width='612px' height='432px'>
+			<h1>Oops! Your browser does not support HTML5.</h1>
+			<p>This game requires HTML5. IE8 and earlier IE versions does not support HTML5.</p>
+			<p>For Windows XP users, you must install a browser which supports HTML5, e.g. Firefox, Chrome.</p>
+		</canvas>
+		<div id='gamefinished'>
+			<h1>Congratulations!!!</h1>
+			<h2>You have finished all the levels!!!</h2>
+			<h2>Your total score is:</h2>
+			<h1 id='totalscore'></h1>
+			<p>
+				<input type='button' id='replay' value='Play Again'/>
+				&nbsp;
+				<a class='back' href='index.html'><input type='button' value='Exit'/></a>
+			</p>
+		</div>
+		<iframe id='egg'>
+		</iframe>
+
+		<div id='footer'>
+			<div class='item'>
+				Level: <span id='level'></span>
+			</div>
+			<div class='item'>
+				Score: <span id='score'></span>
+			</div>
+			<div class='item'>
+				<input type='checkbox' id='enableSound' checked='checked'/><label for='enableSound'>Sound</label>
+			</div>
+			<div class='item' id='paused'>Paused</div>
+			<a class='back' href='index.html'>
+				<input type='button' value='Exit'/>
+			</a>
+		</div>
+
+		<span id='audio'>
+		</span>
+	</body>
+</html>

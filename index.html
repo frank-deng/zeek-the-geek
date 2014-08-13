@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='UTF-8'/>
+		<title>Zeek the Geek</title>
+		<style type='text/css'>
+			body {
+				background-color: #FFF;
+			}
+			div.bodyContainer{
+				margin-left: auto;
+				margin-right: auto;
+				max-width: 900px
+			}
+			div.contentContainer{
+				margin-left: 10px;
+				margin-right: 10px;
+			}
+			div#header, div#footer{
+				text-align: center;
+			}
+			img.logo {
+				vertical-align: middle;
+				max-width: 100px;
+				max-height: 50px;
+			}
+			a.logo{
+				text-decoration: none;
+				color: #000;
+			}
+
+			div#puzzlePacks {
+				float: left;
+				width: auto;
+				height: auto;
+				padding: 10px;
+				margin: 0;
+				margin-right: 20px;
+				margin-bottom: 5px;
+				border: solid 1px #F0F;
+			}
+			div#puzzlePacks h4{
+				margin: 0;
+				padding: 0;
+				margin-bottom: 5px;
+			}
+			div#puzzlePacks ul{
+				margin: 0;
+				padding: 0;
+				padding-left: 1em;
+			}
+
+			/* Main text */
+			a.contents {
+				text-decoration: none;
+				color: #007;
+			}
+			a.contents:hover{
+				text-decoration: none;
+				color: #33F;
+			}
+			h3 {
+				color: #F00;
+			}
+			table.list {
+				cellspacing: 0;
+			}
+			table.list th, table.list td{
+				text-align: left;
+				padding-left: 20px;
+			}
+			div.zeekImage{
+				display: inline-block;
+				width: 36px;
+				height: 36px;
+			}
+			div.zeekImage#image1 {
+				background-image:url("image/1.gif");
+			}
+			div.zeekImage#image2 {
+				background-image:url("image/2.gif");
+			}
+		</style>
+		<script type='text/javascript' src='lib/jquery-2.1.0.min.js'></script>
+		<script type='text/javascript' src='puzzlePacks.js'></script>
+		<script type='text/javascript'>
+			$(window).load(function(){
+				for (label in puzzlePacks){
+					$('div#puzzlePacks ul').append(
+						'<li><a href="' + label + '.html">'
+						+ puzzlePacks[label]
+						+ '</a></li>');
+				}
+			});
+		</script>
+	</head>
+	<body>
+		<div class='bodyContainer'>
+			<div id='header'>
+				<h1>
+					<div class='zeekImage' id='image2' style='background-position:-72px -180px;'></div>
+					<img src='image/title-text.gif'/>
+					<div class='zeekImage' id='image2' style='background-position:-108px -432px;'></div>
+				</h1>
+				<h3 style='color:#000;'>An HTML5 puzzle game</h3>
+			</div>
+
+			<hr/>
+
+			<div class='contentContainer'>
+				<a name='puzzlePacks'></a>
+				<div id='puzzlePacks'>
+					<h4>Puzzle Packs</h4>
+					<ul>
+					</ul>
+				</div>
+
+				<h3>TABLE OF CONTENTS</h3>
+				<p><a class='contents' href='#story'>● The Story</a><br/>
+				<a class='contents' href='#control'>● Game Controls</a><br/>
+				<a class='contents' href='#more'>● More Information</a></p>
+
+				<hr/>
+				<a name='story'></a>
+				<h3>The Story</h3>
+        <p>On a small planet in a large solar system on the far side of the galaxy, there is intelligent life. The dominant life form is the Geek, not to be confused with the geeks we know here on earth. Geeks have extremely high IQ's, but they lack common sense. (OK, so there is some resemblance to earthly geeks.) A Geek could out-perform any scientific calculator without blinking an eye, but would have trouble solving even simple puzzles.</p>
+        <p>Zeek is a typical Geek. He has a large head with a very large brain, and he can solve complex mathematical formulas in a flash. But, he is easily confused by everyday challenges. Unfortunately, this is quite a problem where Zeek lives. Everyday challenges can be fatal if he makes a mistake, and he needs help deciding how to get around. This is where you come in. You can help him get to the mushrooms that he and his family like so much.</p>
+
+				<a name='control'></a>
+				<h3>Game Controls</h3>
+				<p>The primary goal of each level is to guide Zeek to a mushroom. It is the favorite food of the Geeks, and Zeek must gather them for his family. Along the way, you will collect points for flowers that Zeek picks, for finding a treasure chest, and for matching up magic crystals, etc. To maximize your score, you must collect things as many as possible in one level.</p>
+				<p>You can control Zeek's movement with the arrow keys on the keyboard or with the mouse. Press an arrow key for the direction that you want Zeek to move, and he will respond as long as you hold the key down.</p>
+				<p>Using the mouse, just click on the spot that you want Zeek to move to, and he responds. If you click at somewhere not at the same row or column as Zeek, Zeek will try to avoid all the potential hazards to reach the point you've clicked. If there is no available way between Zeek and the point you've clicked, Zeek will just stand there.</p>
+				<p>If your browser's cookie functions well, then once you have finished a level in a Puzzle Pack, your progress as well as your total score of the current Puzzle Pack will be saved. Next time you open the same Puzzle Pack, you'll start after the latest level you have played.</p>
+				<p>In some levels, Zeek may accompany with his partner, you can use W, A, S, D keys as arrow keys to control Zeek's Partner.</p>
+				<p>You may get some surprises during playing the game. To resume, click the outside area in silver color then press "P" to resume.</p>
+				<h4>Keyboard Operation</h4>
+				<table class='list'>
+					<tr><th>Key</th><th>Usage</th></tr>
+					<tr><td>Up</td><td>Move Zeek upwards</td></tr>
+					<tr><td>Left</td><td>Move Zeek leftwards</td></tr>
+					<tr><td>Down</td><td>Move Zeek downwards</td></tr>
+					<tr><td>Right</td><td>Move Zeek rightwards</td></tr>
+					<tr><td>W</td><td>Move Zeek's Partner upwards</td></tr>
+					<tr><td>A</td><td>Move Zeek's Partner leftwards</td></tr>
+					<tr><td>S</td><td>Move Zeek's Partner downwards</td></tr>
+					<tr><td>D</td><td>Move Zeek's Partner rightwards</td></tr>
+					<tr><td>0</td><td>Mouse controls Zeek</td></tr>
+					<tr><td>9</td><td>Mouse controls Zeek's Partner</td></tr>
+					<tr><td>P</td><td>Pause/Resume game</td></tr>
+					<tr><td>R</td><td>Restart current level</td></tr>
+					<tr><td>Space</td><td>Speed up the game</td></tr>
+				</table>
+
+				<a name='more'></a>
+				<h3>Things in the game</h3>
+				<p>The complete list of things that Zeek will meet:</p>
+				<table class='list'>
+					<tr>
+						<td><div class='zeekImage' id='image2' style='background-position:0px 0px;'></div></td>
+						<td>Walls that do not move.</td>
+					</tr>
+					<tr>
+						<td><div class='zeekImage' id='image2' style='background-position:-36px -72px;'></div></td>
+						<td>Yellow barrels that do not move.</td></tr>
+					<tr>
+						<td><div class='zeekImage' id='image2' style='background-position:-36px -324px;'></div></td>
+						<td>Mushrooms that Zeek collects for the supply of his energy.</td>
+					</tr>
+					<tr>
+						<td><div class='zeekImage' id='image2' style='background-position:-36px -360px;'></div></td>
+						<td>Toadstools that are fatal if eaten.</td>
+					</tr>
+					<tr>
+						<td><div class='zeekImage' id='image2' style='background-position:-36px -36px;'></div></td>
+						<td>Round yellow boulders that Zeek can push.</td>
+					</tr>
+					<tr>
+						<td><div class='zeekImage' id='image2' style='background-position:-36px 0px;'></div></td>
+						<td>Giant apples that Zeek can push.</td>
+					</tr>
+					<tr>
+						<td><div class='zeekImage' id='image2' style='background-position:-36px -216px;'></div></td>
+						<td>Yellow flowers that Zeek can pick.</td>
+					</tr>
+					<tr>
+						<td><div class='zeekImage' id='image2' style='background-position:-36px -108px;'></div></td>
+						<td>Locked gates.</td>
+					</tr>
+					<tr>
+						<td><div class='zeekImage' id='image2' style='background-position:-36px -252px;'></div></td>
+						<td>Keys to the gates. (Zeek can carry only one at a time, but the key can be exchanged between Zeek and his partner. :P)</td>
+					</tr>
+					<tr>
+						<td><div class='zeekImage' id='image1' style='background-position:-72px 0px;'></div></td>
+						<td>Purple flower buds that open when a Geek is near.</td>
+					</tr>
+					<tr>
+						<td><div class='zeekImage' id='image1' style='background-position:-72px -108px;'></div></td>
+						<td>Purple flowers that eat apples and nearby Geeks.</td>
+					</tr>
+					<tr>
+						<td><div class='zeekImage' id='image1' style='background-position:-36px -180px;'></div></td>
+						<td>Magic crystals that disintegrate when brought together.</td>
+					</tr>
+					<tr>
+						<td><div class='zeekImage' id='image1' style='background-position:-36px -72px;'></div></td>
+						<td>Dynamite that Zeek can push to destroy most obstacles.</td>
+					</tr>
+					<tr>
+						<td><div class='zeekImage' id='image1' style='background-position:0px 0px;'></div></td>
+						<td>Piclasops that graze on the local vegetation.</td>
+					</tr>
+					<tr>
+						<td><div class='zeekImage' id='image2' style='background-position:-36px -288px;'></div></td>
+						<td>Laser Guns that zap Geeks when they can.</td>
+					</tr>
+					<tr>
+						<td><div class='zeekImage' id='image2' style='background-position:-36px -180px;'></div></td>
+						<td>Blue flowers that are fatal if picked.</td>
+					</tr>
+					<tr>
+						<td><div class='zeekImage' id='image2' style='background-position:-36px -144px;'></div></td>
+						<td>Attitude Eggs that change the colors of flowers.</td>
+					</tr>
+					<tr>
+						<td><div class='zeekImage' id='image1' style='background-position:-36px 0px;'></div></td>
+						<td>Rotten Apples that are digested slowly by the purple flowers.</td>
+					</tr>
+					<tr>
+						<td><div class='zeekImage' id='image2' style='background-position:-36px -396px;'></div></td>
+						<td>Invisibility pills that last for a short time.</td>
+					</tr>
+				</table>
+
+				<h3>Puzzle Packs</h3>
+
+				<p>To find where the Puzzle Packs are, scroll to the top of this page, then you'll find a pink box with title "Puzzle Packs" at the left side of this page, click one of them to choose a Puzzle Pack.</p>
+				<p>Choose a simple Puzzle Pack if you don't want to think too hard, or choose a more difficult Puzzle Pack if you really want to be challenged. A number of Zeek the Geek Puzzle Packs are available here, and you may be able to find third party puzzle packs available elsewhere.</p>
+				<p>Here is the descriptions of some of the Puzzle Packs available here:</p>
+				<ul>
+					<li>Nice 'n Easy<br/>
+					30 puzzles for those who want to be lightly challenged.</li>
+					<li>Kid's Stuff<br/>
+					30 very simple puzzles designed for the very young.</li>
+					<li>Galore<br/>
+					60 puzzles, easy to difficult, but most somewhere between.</li>
+					<li>Challenge<br/>
+					30 very challenging puzzles for the experienced players.</li>
+					<li>Challenge II<br/>
+					30 very challenging puzzles for the experienced players.</li>
+					<li>Valentine 1<br/>
+					Puzzles here requires the cooperation of two players.</li>
+				</ul>
+				<a href='#puzzlePacks'>Go to Puzzle Packs</a>
+
+				<h3>Zeek the Geek Designer</h3>
+				<p>Zeek the Geek Designer is a user friendly tool that lets you design your own level. You can export several levels you made into one Puzzle Pack.</p>
+				<p>Programming experience is not essential in creating your puzzles, and you should be able to learn to use the simple controls in just a few minutes. You can build your puzzles with all the features and functionality of Zeek the Geek.</p>
+				<p>For further information, please see the help of Zeek the Geek Designer.</p>
+
+				<h3>Requirements</h3>
+				<p>A browser supports HTML5 well, e.g: Firefox, Chrome, IE9+.</p>
+				<p>Zeek the Geek Designer requires the installation of Python as well as its Tcl/Tk module.</p>
+			</div>
+			<hr/>
+			<div id='footer'>
+				<a class='logo' href='http://en.wikipedia.org/wiki/HTML5'>
+					<img class='logo' src='image/HTML5_logo_and_wordmark.svg'/>
+				</a>
+				<a class='logo' href='http://jquery.com/'>
+					<img class='logo' src='image/jquery_logo.svg'/>
+				</a>
+				<a class='logo' href='http://www.python.org/'>
+					<img class='logo' src='image/Python.svg'/>
+				</a>
+			</div>
+		</div>
+	</body>
+</html>
+
