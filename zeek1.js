@@ -120,10 +120,12 @@ levelData = [
 		stage.setObject(14, 10, new PFlower(true));
 
 		//:P
+		/*
 		stage.getObject(11, 9).onPick = function(player) {
 			player.stage.score += 100;
 			$(document).trigger('enterEgg', ['egg/001.html']);
 		}
+		*/
 	}),
 	new Stage(function(stage){
 		//Init player
