@@ -1,22 +1,25 @@
-function Apple(){
-	this.onTick = function(stage, col, row){
+class Apple{
+	type='Apple';
+	push=true;
+	eat=true;
+	destroy=true;
+	onTick(stage, col, row){
 		if (this.leaving) {
 			this.destroy = false;
 		}
 	}
-	this.type = 'Apple';
-	this.push = this.eat = this.destroy = true;
-	this.onDraw = function(ctx, col, row){
+	onDraw(ctx, col, row){
 		drawImage(image[this.type], ctx, col, row);
 	}
 }
-function AppleRotten(){
-	this.type = 'AppleRotten';
-	this.push = this.eat = this.destroy = true;
-
-	this.timer = 1;
-	this.img_index = 0;
-	this.onDraw = function(ctx, col, row){
+class AppleRotten{
+	type='AppleRotten';
+	push=true;
+	eat=true;
+	destroy=true;
+	timer = 1;
+	img_index = 0;
+	onDraw(ctx, col, row){
 		this.timer++;
 		if (0 == (this.timer % 2)){
 			this.img_index = (0 == this.img_index ? 1 : 0);
@@ -24,25 +27,24 @@ function AppleRotten(){
 		drawImage(image[this.type][this.img_index], ctx, col, row);
 	}
 }
-function Ball(){
-	this.type = 'Ball';
-	this.push = true;
-	this.onDraw = function(ctx, col, row){
+class Ball{
+	type='Ball';
+	push = true;
+	onDraw(ctx, col, row){
 		drawImage(image[this.type], ctx, col, row);
 	}
 }
-function Bomb(){
-	this.type = 'Bomb';
-	this.push = true;
-	this.timeout = -1;
-	this.detonated = false;
-
-	this.doActivate = function() {
+class Bomb{
+	type = 'Bomb';
+	push = true;
+	timeout = -1;
+	detonated = false;
+	doActivate() {
 		if (this.timeout < 0) {
 			this.timeout = 160;
 		}
 	}
-	this.doDetonate = function(stage, col, row) {
+	doDetonate(stage, col, row) {
 		this.push = undefined;
 		this.detonated = true;
 		var neighbour = stage.getNeighbour(col, row);
@@ -60,11 +62,11 @@ function Bomb(){
 			}
 		}
 		neighbour.splice(0, neighbour.length);
-		delete neighbour;
+		//delete neighbour;
 
 		playAudio('detonate');
 	}
-	this.onTick = function(stage, col, row) {
+	onTick(stage, col, row) {
 		var moving = false;
 		if (col < 0 || row < 0) {
 			moving = true;
@@ -84,7 +86,7 @@ function Bomb(){
 			}
 		}
 	}
-	this.onDraw = function(ctx, col, row){
+	onDraw(ctx, col, row){
 		if (this.timeout < 0) {
 			drawImage(image[this.type]['normal'], ctx, col, row);
 		} else if (this.detonated) {
@@ -94,19 +96,18 @@ function Bomb(){
 		}
 	}
 }
-function Crystal(){
-	this.type = 'Crystal';
-	this.push = true;
-
-	this.triggered = -1;
-	this.TRIGGER = 35;
-	this.trigger = function(){
+class Crystal{
+	type = 'Crystal';
+	push = true;
+	triggered = -1;
+	TRIGGER = 35;
+	trigger(){
 		if (-1 == this.triggered) {
 			this.triggered = this.TRIGGER;
 			this.push = undefined;
 		}
 	}
-	this.onTick = function(stage, col, row){
+	onTick(stage, col, row){
 		if (0 == this.triggered) {
 			stage.destroyObject(col, row);
 			stage.score += 200;
@@ -127,10 +128,9 @@ function Crystal(){
 				}
 			}
 			neighbour.splice(0, neighbour.length);
-			delete neighbour;
 		}
 	}
-	this.onDraw = function(ctx, col, row){
+	onDraw(ctx, col, row){
 		if (this.triggered > 0) {
 			drawImage(image[this.type][this.triggered % 3], ctx, col, row);
 		} else {
@@ -138,10 +138,10 @@ function Crystal(){
 		}
 	}
 }
-function Door(){
-	this.type = 'Door';
-	this.destroy = true;
-	this.onPick = function(player) {
+class Door{
+	type = 'Door';
+	destroy = true;
+	onPick(player) {
 		var len = player.stage.data.length;
 		for (var i = 0; i < len; i++) {
 			var object = player.stage.data[i];
@@ -158,7 +158,7 @@ function Door(){
 			}
 		}
 	}
-	this.onDraw = function(ctx, col, row){
+	onDraw(ctx, col, row){
 		drawImage(image[this.type], ctx, col, row);
 	}
 }
