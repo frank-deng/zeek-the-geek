@@ -44,17 +44,17 @@ function randomTurn(demon) {
 	}
 	return result;
 }
-function Demon(stage, col, row, initDir) {
-	this.type = 'Demon';
-	this.Moveable = new Moveable(col, row, initDir);
-	this.turning = leftFirst;
-
-	this.stage = stage;
-	this.stage.setObject(col, row, new SpacerDemon(this));
-	this.regexpSpacer = new RegExp('Spacer.*');
-	this.dir = initDir;
-
-	this.move = function(dir){
+class Demon{
+	type = 'Demon';
+	turning = leftFirst;
+	constructor(stage, col, row, initDir){
+		this.Moveable = new Moveable(col, row, initDir);
+		this.stage = stage;
+		this.stage.setObject(col, row, new SpacerDemon(this));
+		this.regexpSpacer = new RegExp('Spacer.*');
+		this.dir = initDir;
+	}
+	move(dir){
 		//Demon is already moving
 		if (this.Moveable.step > 0) {
 			return false;
@@ -69,7 +69,7 @@ function Demon(stage, col, row, initDir) {
 		this.stage.getObject(this.Moveable.colPrev, this.Moveable.rowPrev).leaving = true;
 		return true;
 	}
-	this.onTick = function(stage) {
+	onTick(stage) {
 		if (this.Moveable.isMoving()){
 			var result = this.Moveable.onTick();
 			this.dir = this.Moveable.dir;
@@ -118,7 +118,7 @@ function Demon(stage, col, row, initDir) {
 			}
 		}
 	}
-	this.onDraw = function(ctx) {
+	onDraw(ctx) {
 		var idx_img = [0, 1, 0, 2, 0, 1, 0, 2, 0];
 		var img = image[this.type][this.dir][idx_img[this.Moveable.step]];
 		this.Moveable.onDraw(img, ctx);

@@ -43,24 +43,26 @@ function getDir(col0, row0, col1, row1){
 		return undefined;
 	}
 }
-function Moveable(col, row, dir) {
-	this.stepMax = 8;
+class Moveable{
+	stepMax = 8;
+	colPrev = undefined;
+	rowPrev = undefined;
+	step = 0;
 
-	this.col = col;
-	this.row = row;
-	this.colPrev = this.rowPrev = undefined;
+	constructor(col, row, dir){
+		this.col = col;
+		this.row = row;
+		this.dir = dir;
+	}
 
-	this.dir = dir;
-	this.step = 0;
-
-	this.isMoving = function() {
+	isMoving(){
 		if (this.step > 0) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-	this.move = function(dir) {
+	move(dir){
 		if (this.isMoving()) {
 			return false;
 		}
@@ -85,7 +87,7 @@ function Moveable(col, row, dir) {
 		}
 		return true;
 	}
-	this.onTick = function() {
+	onTick(){
 		var result = undefined;
 		if (this.isMoving()) {
 			this.step--;
@@ -96,7 +98,7 @@ function Moveable(col, row, dir) {
 		}
 		return result;
 	}
-	this.onDraw = function(img, ctx) {
+	onDraw(img, ctx){
 		switch (this.dir){
 			case DIR_NORTH:
 				drawImage(img, ctx, this.col, this.row + this.step / this.stepMax);
