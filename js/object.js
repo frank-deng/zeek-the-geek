@@ -238,14 +238,14 @@ class Key{
 		drawImage(image[this.type], ctx, col, row);
 	}
 }
-function LaserGun() {
-	this.type = 'LaserGun';
-	this.destroy = true;
-	this.detectedPos = new Array();
-	this.blackAreaDetected = new Array();
+class LaserGun{
+	type = 'LaserGun';
+	destroy = true;
+	detectedPos = new Array();
+	blackAreaDetected = new Array();
 
-	this.doDetect = function(stage, col, row) {
-		var result = new Array();
+	doDetect(stage, col, row) {
+		let result = new Array();
 		this.blackAreaDetected.splice(0, this.blackAreaDetected.length);
 
 		//North
@@ -290,7 +290,7 @@ function LaserGun() {
 
 		return (result.length > 0 ? result : undefined);
 	}
-	this.setupLaser = function(stage, col, row, posDetected){
+	setupLaser(stage, col, row, posDetected){
 		switch (posDetected.dir) {
 			case DIR_NORTH:
 				for (var y = row - 1; y > posDetected.row; y--) {
@@ -315,7 +315,7 @@ function LaserGun() {
 		}
 		playAudio('lasershot');
 	}
-	this.onTick = function(stage, col, row) {
+	onTick(stage, col, row) {
 		this.detectedPos = this.doDetect(stage, col, row);
 		if (undefined != this.detectedPos) {
 			for (var i = 0; i < this.detectedPos.length; i++) {
@@ -333,10 +333,10 @@ function LaserGun() {
 		}
 		this.detectedPos.splice(0, this.detectedPos.length);
 	}
-	this.onDraw = function(ctx, col, row){
+	onDraw(ctx, col, row){
 		drawImage(image[this.type], ctx, col, row);
 	}
-	this.blackArea = function(stage, col, row) {
+	blackArea(stage, col, row) {
 		return this.blackAreaDetected;
 	}
 }
@@ -370,35 +370,36 @@ class Mushroom{
 		return [];
 	}
 }
-function PFlower(opened) {
-	this.type = 'PFlower';
-	this.eat = this.destroy = true;
-
-	/* Values of this.status:
-	 * 'C' : Flower closed
-	 * 'o' : Flower opening
-	 * 'O' : Flower opened
-	 * 'G' : Flower grabbing object
-	 * 'D' : Flower digesting
-	 */
-	this.status = (opened ? 'O' : 'C');
-	this.open = 0;
-	this.digest = 0;
-	this.grab = {
+class PFlower{
+	type = 'PFlower';
+	eat = true;
+	destroy = true;
+	open = 0;
+	digest = 0;
+	grab = {
 		type: undefined,
 		dir: undefined,
 		timeout: 0,
 		spacerCol: undefined,
 		spacerRow: undefined,
 	};
-
-	this.doOpen = function() {
+	constructor(opened){
+		/* Values of this.status:
+		 * 'C' : Flower closed
+		 * 'o' : Flower opening
+		 * 'O' : Flower opened
+		 * 'G' : Flower grabbing object
+		 * 'D' : Flower digesting
+		 */
+		this.status = (opened ? 'O' : 'C');
+	}
+	doOpen(){
 		if ('C' == this.status) {
 			this.open = image[this.type]['open'].length;
 			this.status = 'o';
 		}
 	}
-	this.doDigest = function(stage, col, row) {
+	doDigest(stage, col, row) {
 		this.status = 'D';
 		stage.setObject(this.grab.spacerCol, this.grab.spacerRow, undefined);
 		switch (this.grab.type) {
@@ -413,7 +414,7 @@ function PFlower(opened) {
 			break;
 		}
 	}
-	this.doDetect = function(stage, col, row, type) {
+	doDetect(stage, col, row, type) {
 		var result = undefined;
 		//Check whether a player is nearby
 		var neighbour = stage.getNeighbour(col, row);
@@ -422,7 +423,7 @@ function PFlower(opened) {
 			var object = stage.getObject(neighbour[i].col, neighbour[i].row);
 			if (undefined != object && object.type == type){
 				if (type == 'SpacerPlayer') {
-					player = object.src;
+					let player = object.src;
 					if (player.invisible <= 0) {
 						result = {
 							type: object.type,
@@ -445,10 +446,9 @@ function PFlower(opened) {
 			}
 		}
 		neighbour.splice(0, neighbour.length);
-		delete neighbour;
 		return result;
 	}
-	this.doGrab = function(stage, col, row, detected) {
+	doGrab(stage, col, row, detected) {
 		this.status = 'G';
 		stage.setObject(detected.col, detected.row, new SpacerPFlower(detected.dir, detected.type));
 		this.grab.type = detected.type;
@@ -458,7 +458,7 @@ function PFlower(opened) {
 		this.grab.timeout = 4;
 		playAudio('grab');
 	}
-	this.onTick = function(stage, col, row) {
+	onTick(stage, col, row) {
 		switch (this.status) {
 			case 'C':
 				var detected = this.doDetect(stage, col, row, 'SpacerPlayer');
@@ -514,7 +514,7 @@ function PFlower(opened) {
 			break;
 		}
 	}
-	this.onDraw = function(ctx, col, row) {
+	onDraw(ctx, col, row) {
 		var img, frameCount, frameSpace, frame;
 		switch (this.status) {
 			case 'C':
@@ -556,17 +556,14 @@ function PFlower(opened) {
 		//Finally draw the image
 		drawImage(img, ctx, col, row);
 	}
-	this.blackArea = function(stage, col, row) {
+	blackArea(stage, col, row) {
 		var result = new Array();
 		var neighbour = stage.getNeighbour(col, row, undefined);
 		for (var i = 0; i < neighbour.length; i++) {
 			result.push({col:neighbour[i].col, row:neighbour[i].row});
 		}
 		result.push({col:col, row: row});
-
 		neighbour.splice(0, neighbour.length);
-		delete neighbour;
-
 		return result;
 	}
 }
