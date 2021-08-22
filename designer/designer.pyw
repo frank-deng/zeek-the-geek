@@ -1,9 +1,11 @@
 #!/usr/bin/python
 import sys, os;
-import Tkinter;
-import Tkinter as tk;
-from Tkinter import *;
-import tkMessageBox, tkFileDialog;
+import tkinter;
+import tkinter as tk;
+from tkinter import *;
+from tkinter import messagebox as tkMessageBox;
+from tkinter import filedialog as tkFileDialog;
+#import tkMessageBox, tkFileDialog;
 import xml.dom.minidom as minidom;
 import webbrowser;
 
@@ -72,7 +74,7 @@ class Stage(zeekExport.Stage):
 			width = self.imgWidth * self.cols,
 			height = self.imgHeight * self.rows);
 
-class ZeekDesigner(Tkinter.Tk):
+class ZeekDesigner(tkinter.Tk):
 	modified = False;
 	stage = None;
 	objSelected = None;
@@ -169,7 +171,7 @@ class ZeekDesigner(Tkinter.Tk):
 				defaultextension = '.zlv',
 				title = 'Open'
 			);
-			print filename;
+			print(filename);
 			if (filename not in (None, '') and len(filename) > 0):
 				self.loadFile(filename);
 		except:
@@ -288,7 +290,7 @@ class ZeekDesigner(Tkinter.Tk):
 	def __init__(self, filename = None):
 		self.filename = filename;
 
-		Tkinter.Tk.__init__(self);
+		tkinter.Tk.__init__(self);
 		self.title('Zeek the Geek Designer');
 		if (None != filename):
 			self.title(filename + ' - Zeek the Geek Designer');

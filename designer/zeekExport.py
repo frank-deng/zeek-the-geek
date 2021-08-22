@@ -1,10 +1,11 @@
 #!/usr/bin/python
 
 import sys, os;
-import Tkinter;
-import Tkinter as tk;
-from Tkinter import *;
-import tkMessageBox, tkFileDialog;
+import tkinter;
+import tkinter as tk;
+from tkinter import *;
+from tkinter import messagebox as tkMessageBox;
+from tkinter import filedialog as tkFileDialog;
 import xml.dom.minidom as minidom;
 import webbrowser;
 import traceback;
@@ -269,7 +270,7 @@ def export(filelist, destfile):
 		#Custom Code
 		base, ext = os.path.splitext(os.path.basename(filename));
 		customScriptPath = os.path.dirname(filename) + '/' + base + '.js';
-		print customScriptPath;
+		print(customScriptPath);
 		if (os.path.isfile(customScriptPath)):
 			f.write("\t\t/* Custom script */\n");
 			__fcs = open(customScriptPath, 'r');
@@ -299,7 +300,7 @@ def export(filelist, destfile):
 
 	return pageFile;
 
-class Export(Tkinter.Tk):
+class Export(tkinter.Tk):
 	def moveUp(self, pos):
 		if pos == 0:
 			return;
@@ -398,7 +399,7 @@ class Export(Tkinter.Tk):
 		self.btn_exit.grid(column = 2, row = 5, padx = 2, pady = 2, ipadx = 10, ipady = 2, sticky = tk.EW);
 
 	def __init__(self):
-		Tkinter.Tk.__init__(self);
+		tkinter.Tk.__init__(self);
 		#self.resizable(False, False);	#Disable resizing
 		self.title('Export');
 		Grid.columnconfigure(self,0,weight=1);
