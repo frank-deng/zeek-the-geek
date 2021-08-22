@@ -91,18 +91,6 @@
 				background-image:url("image/2.gif");
 			}
 		</style>
-		<script type='text/javascript' src='lib/jquery-2.1.0.min.js'></script>
-		<script type='text/javascript' src='puzzlePacks.js'></script>
-		<script type='text/javascript'>
-			$(window).load(function(){
-				for (label in puzzlePacks){
-					$('div#puzzlePacks ul').append(
-						'<li><a href="' + label + '.html">'
-						+ puzzlePacks[label]
-						+ '</a></li>');
-				}
-			});
-		</script>
 	</head>
 	<body>
 		<div class='bodyContainer'>
@@ -274,6 +262,17 @@
 				<p>Zeek the Geek Designer requires the installation of Python as well as its Tcl/Tk module.</p>
 			</div>
 		</div>
+		<script type='text/javascript' src='puzzlePacks.js'></script>
+		<script type='text/javascript'>
+			var puzzlePacksDom=document.querySelector('div#puzzlePacks ul');
+			for (label in puzzlePacks){
+				var item=document.createElement('li');
+				item.innerHTML='<a href="' + label + '.html">'
+					+ puzzlePacks[label]
+					+ '</a>';
+				puzzlePacksDom.appendChild(item);
+			}
+		</script>
 	</body>
 </html>
 
