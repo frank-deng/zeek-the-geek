@@ -162,10 +162,12 @@ class Door{
 		drawImage(image[this.type], ctx, col, row);
 	}
 }
-function Egg() {
-	this.type = 'Egg';
-	this.pick = this.eat = this.destroy = true;
-	this.onPick = function(player) {
+class Egg{
+	type = 'Egg';
+	pick = true;
+	eat = true;
+	destroy = true;
+	onPick(player) {
 		var len = player.stage.data.length;
 		for (var i = 0; i < len; i++) {
 			var object = player.stage.data[i];
@@ -175,42 +177,47 @@ function Egg() {
 		}
 		player.stage.score += 100;
 	}
-	this.onDraw = function(ctx, col, row) {
+	onDraw(ctx, col, row) {
 		drawImage(image[this.type], ctx, col, row);
 	}
-	this.blackArea = function(stage, col, row) {
+	blackArea(stage, col, row) {
 		return [{col:col, row: row}];
 	}
 }
-function Flower(poisonous) {
-	this.type = 'Flower';
-	this.pick = this.eat = this.destroy = true;
-	this.poisonous = poisonous;
-	this.onPick = function(player) {
+class Flower{
+	type = 'Flower';
+	pick = true;
+	eat = true;
+	destroy = true;
+	constructor(poisonous){
+		this.poisonous = poisonous;
+	}
+	onPick(player) {
 		if (this.poisonous) {
 			player.poisoned = true;
 		} else {
 			player.stage.score += 50;
 		}
 	}
-	this.onDraw = function(ctx, col, row) {
+	onDraw(ctx, col, row) {
 		if (this.poisonous) {
 			drawImage(image[this.type][1], ctx, col, row);
 		} else {
 			drawImage(image[this.type][0], ctx, col, row);
 		}
 	}
-	this.blackArea = function(stage, col, row) {
+	blackArea(stage, col, row) {
 		if (this.poisonous) {
 			return [{col:col, row: row}];
 		}
 		return [];
 	}
 }
-function Key(){
-	this.type = 'Key';
-	this.pick = this.destroy = true;
-	this.onPick = function(player) {
+class Key{
+	type = 'Key';
+	pick = true;
+	destroy = true;
+	onPick(player) {
 		var len = player.stage.data.length;
 		for (var i = 0; i < len; i++) {
 			var object = player.stage.data[i];
@@ -227,7 +234,7 @@ function Key(){
 			}
 		}
 	}
-	this.onDraw = function(ctx, col, row){
+	onDraw(ctx, col, row){
 		drawImage(image[this.type], ctx, col, row);
 	}
 }
@@ -333,11 +340,15 @@ function LaserGun() {
 		return this.blackAreaDetected;
 	}
 }
-function Mushroom(poisonous) {
-	this.type = 'Mushroom';
-	this.pick = this.eat = this.destroy = true;
-	this.poisonous = poisonous;
-	this.onPick = function(player) {
+class Mushroom{
+	type = 'Mushroom';
+	pick = true;
+	eat = true;
+	destroy = true;
+	constructor(poisonous){
+		this.poisonous = poisonous;
+	}
+	onPick(player) {
 		if (this.poisonous) {
 			player.poisoned = true;
 		} else {
@@ -345,16 +356,16 @@ function Mushroom(poisonous) {
 			player.finished = true;
 		}
 	}
-	this.onDraw = function(ctx, col, row) {
-		if (poisonous) {
+	onDraw(ctx, col, row) {
+		if (this.poisonous) {
 			drawImage(image[this.type][1], ctx, col, row);
 		} else {
 			drawImage(image[this.type][0], ctx, col, row);
 		}
 	}
-	this.blackArea = function(stage, col, row) {
+	blackArea(stage, col, row) {
 		if (this.poisonous) {
-			return [{col:col, row: row}];
+			return [{col:col, row:row}];
 		}
 		return [];
 	}
@@ -559,24 +570,26 @@ function PFlower(opened) {
 		return result;
 	}
 }
-function Pill() {
-	this.type = 'Pill';
-	this.pick = this.eat = this.destroy = true;
-	this.onPick = function(player) {
+class Pill {
+	type = 'Pill';
+	pick = true;
+	eat = true;
+	destroy = true;
+	onPick(player) {
 		player.invisible += 200;
 	}
-	this.onDraw = function(ctx, col, row) {
+	onDraw(ctx, col, row) {
 		drawImage(image[this.type], ctx, col, row);
 	}
 }
-
-function SpacerDemon(src){
-	this.type = 'SpacerDemon';
-	this.destroy = true;
-	this.src = src;
-	this.leaving = false;
-
-	this.onDestroy = function(stage, col, row) {
+class SpacerDemon{
+	type = 'SpacerDemon';
+	destroy = true;
+	leaving = false;
+	constructor(src){
+		this.src = src;
+	}
+	onDestroy(stage, col, row) {
 		if (!this.leaving) {
 			var demon = this.src;
 			if (undefined != demon.Moveable.colPrev
@@ -586,7 +599,7 @@ function SpacerDemon(src){
 			stage.destroyDemon(demon);
 		}
 	}
-	this.onTick = function(stage, col, row){
+	onTick(stage, col, row){
 		if (this.leaving) {
 			this.destroy = false;
 		}
@@ -601,17 +614,19 @@ function SpacerDemon(src){
 	}
 	*/
 }
-function SpacerLaser(dir) {
-	this.type = 'SpacerLaser';
-	this.dir = dir;
-	this.timeout = 3;
-	this.onTick = function(stage, col, row) {
+class SpacerLaser{
+	type = 'SpacerLaser';
+	timeout = 3;
+	constructor(dir){
+		this.dir=dir;
+	}
+	onTick(stage, col, row) {
 		this.timeout--;
 		if (this.timeout <= 0) {
 			stage.setObject(col, row, undefined);
 		}
 	}
-	this.onDraw = function(ctx, col, row) {
+	onDraw(ctx, col, row) {
 		var img;
 		switch(this.dir) {
 			case DIR_NORTH:
@@ -625,23 +640,27 @@ function SpacerLaser(dir) {
 		}
 	}
 }
-function SpacerObject(src){
-	this.type = 'SpacerObject';
-	this.src = src;
+class SpacerObject{
+	type = 'SpacerObject';
+	constructor(src){
+		this.src = src;
+	}
 }
-function SpacerPFlower(dir, type) {
-	this.type = 'SpacerPFlower';
-	this.dir = dir;
-	this.typeGrabbed = type;
-	this.timeout = 24;
-	this.onTick = function(stage, col, row) {
+class SpacerPFlower{
+	type = 'SpacerPFlower';
+	timeout = 24;
+	constructor(dir, type){
+		this.dir = dir;
+		this.typeGrabbed = type;
+	}
+	onTick(stage, col, row) {
 		this.timeout--;
 		if (this.timeout <= 0) {
 			stage.setObject(col, row, undefined);
 		}
 	}
-	this.onDraw = function(ctx, col, row) {
-		var img;
+	onDraw(ctx, col, row) {
+		let img;
 		switch (this.typeGrabbed) {
 			case 'SpacerPlayer':
 				img = image[this.type]['grabPlayer'][this.dir];
@@ -654,19 +673,21 @@ function SpacerPFlower(dir, type) {
 		drawImage(img, ctx, col, row);
 	}
 }
-function SpacerPlayer(src){
-	this.type = 'SpacerPlayer';
-	this.eat = this.destroy = true;
-	this.src = src;
-	this.leaving = false;
-
-	this.onEat = function(demon, stage, col, row) {
+class SpacerPlayer{
+	type = 'SpacerPlayer';
+	eat = true;
+	destroy = true;
+	leaving = false;
+	constructor(src){
+		this.src = src;
+	}
+	onEat(demon, stage, col, row) {
 		playAudio('bitten');
 		if (!this.leaving) {
 			this.src.poisoned = true;
 		}
 	}
-	this.onDestroy = function(stage, col, row) {
+	onDestroy(stage, col, row) {
 		var player = this.src;
 		if (undefined != player.Moveable.colPrev
 			&& undefined != player.Moveable.rowPrev) {
@@ -674,7 +695,7 @@ function SpacerPlayer(src){
 		}
 		stage.destroyPlayer(player);
 	}
-	this.onTick = function(stage, col, row){
+	onTick(stage, col, row){
 		if (this.leaving) {
 			this.destroy = this.eat = false;
 		} else {
@@ -682,19 +703,22 @@ function SpacerPlayer(src){
 		}
 	}
 }
-function SpacerPlayerPoisoned(player) {
-	this.type = 'SpacerPlayerPoisoned';
-	this.dir = player.Moveable.dir;
-	this.timeout = 30;
-	this.onTick = function(stage, col, row) {
+class SpacerPlayerPoisoned{
+	type = 'SpacerPlayerPoisoned';
+	timeout = 30;
+	constructor(player){
+		this.player=player;
+		this.dir = player.Moveable.dir;
+	}
+	onTick(stage, col, row) {
 		if (0 == this.timeout) {
 			stage.destroyObject(col, row);
 			return;
 		}
 		this.timeout--;
 	}
-	this.onDraw = function(ctx, col, row){
-		var __type = (player.girl ? 'PlayerGirl' : 'Player');
+	onDraw(ctx, col, row){
+		var __type = (this.player.girl ? 'PlayerGirl' : 'Player');
 		if (this.timeout > 20) {
 			drawImage(image[__type][this.dir][0], ctx, col, row);
 		} else {
@@ -706,20 +730,23 @@ function SpacerPlayerPoisoned(player) {
 		}
 	}
 }
-function Treasure(poisonous) {
-	this.type = 'Treasure';
-	this.pick = this.destroy = true;
-	this.onPick = function(player) {
+class Treasure{
+	type = 'Treasure';
+	pick = true;
+	destroy = true;
+	onPick(player) {
 		player.stage.score += 1000;
 	}
-	this.onDraw = function(ctx, col, row) {
+	onDraw(ctx, col, row) {
 		drawImage(image[this.type], ctx, col, row);
 	}
 }
-function Wall(style) {
-	this.type = 'Wall';
-	this.style = style;
-	this.onDraw = function(ctx, col, row){
+class Wall{
+	type = 'Wall';
+	constructor(style){
+		this.style=style;
+	}
+	onDraw(ctx, col, row){
 		drawImage(image[this.type][this.style], ctx, col, row);
 	}
 }
