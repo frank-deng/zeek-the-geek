@@ -16,13 +16,6 @@ function puzzlePackFinished(totalScore) {
 	}catch(e){
 		console.error(e);
 	}
-	/*
-	$('input#replay').bind('click', function(event){
-		$.cookie(packName + '_Level', null, {expires: -1});
-		$.cookie(packName + '_Score', null, {expires: -1});
-		location = location;	//Refresh page
-	});
-	*/
 }
 function Game(packName, levelData) {
 	var ctx = $('canvas#stage')[0].getContext('2d');
@@ -43,11 +36,9 @@ function Game(packName, levelData) {
 	}catch(e){
 		console.error(e);
 	}
-	//totalScore = $.cookie(packName + '_Score');
 	if (undefined != totalScore && !isNaN(totalScore)) {
 		totalScore = Number(totalScore);
 	}
-	//levelNum = $.cookie(packName + '_Level');
 	if (undefined != levelNum && !isNaN(levelNum)) {
 		levelNum = Number(levelNum);
 	} else {
@@ -80,10 +71,6 @@ function Game(packName, levelData) {
 		}catch(e){
 			console.error(e);
 		}
-		/*
-		$.cookie(packName + '_Level', levelNum, {expires: 3650});
-		$.cookie(packName + '_Score', totalScore, {expires: 3650});
-		*/
 		if (levelNum < levelData.length) {
 			//Next level
 			level = new Level(levelData[levelNum], ctx);
