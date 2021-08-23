@@ -1,22 +1,27 @@
-function Maze(w, h, initfunc) {
-	this.w = w;
-	this.h = h;
-	this.SPACE = undefined;
-	this.WALL = 1;
-	this.FOOTPRINT = 2;
+class Maze{
+	SPACE = undefined;
+	WALL = 1;
+	FOOTPRINT = 2;
+	goal = undefined;
+	footPrint = new Array();
+	constructor(w, h, initfunc){
+		this.w = w;
+		this.h = h;
+		this.data = new Array(this.w * this.h);
 
-	this.data = new Array(this.w * this.h);
-	this.goal = undefined;
-	this.footPrint = new Array();
-
-	this.get = function(x, y) {
+		//Init
+		if (undefined != initfunc) {
+			initfunc(this);
+		}
+	}
+	get(x, y) {
 		return this.data[x + y * this.w];
 	}
-	this.set = function(x, y, element){
+	set(x, y, element){
 		delete this.data[x + y * this.w];
 		this.data[x + y * this.w] = element;
 	}
-	this.getDir = function(x0, y0, x1, y1) {
+	getDir(x0, y0, x1, y1) {
 		var goal = this.goal;
 		var dx = x1 - x0;
 		var dy = y1 - y0;
@@ -49,7 +54,7 @@ function Maze(w, h, initfunc) {
 			}
 		}
 	}
-	this.reachable = function(x, y) {
+	reachable(x, y){
 		if (x < 0 || x >= this.w || y < 0 || y >= this.h) {
 			return false;
 		} else if (this.SPACE != this.get(x, y)) {
@@ -57,7 +62,7 @@ function Maze(w, h, initfunc) {
 		}
 		return true;
 	}
-	this.getPosByDir = function(x, y, dir) {
+	getPosByDir(x, y, dir){
 		var result;
 		switch (dir) {
 			case 'N':
@@ -75,7 +80,7 @@ function Maze(w, h, initfunc) {
 		}
 		return result;
 	}
-	this.next = function() {
+	next(){
 		if (0 == this.footPrint.length) {
 			return false;
 		}
@@ -97,11 +102,6 @@ function Maze(w, h, initfunc) {
 		//None of the directions reachable
 		var posBlock = this.footPrint.pop();
 		return true;
-	}
-
-	//Init
-	if (undefined != initfunc) {
-		initfunc(this);
 	}
 }
 function mazeSolver(stage, player, destCol, destRow) {
