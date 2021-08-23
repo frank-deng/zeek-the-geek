@@ -21,15 +21,6 @@
 		<script type='text/javascript' src='js/level.js'></script>
 		<script type='text/javascript' src='js/game.js'></script>
 
-		<!--Level data file-->
-		<script type='text/javascript' src='zeek1.js'></script>
-
-		<script type='text/javascript'>
-			packName = 'zeek1';
-			$(window).load(function(){
-				new Game(packName, levelData);
-			});
-		</script>
 	</head>
 	<body>
 		<canvas id='stage' width='612px' height='432px'>
@@ -66,8 +57,6 @@
 				<input type='button' value='Exit'/>
 			</a>
 		</div>
-
-		<span id='audio'>
-		</span>
+		<script type='text/javascript' src='zeek1.js'></script>
 	</body>
 </html>

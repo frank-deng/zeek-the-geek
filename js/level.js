@@ -42,22 +42,9 @@ function Level(stage, ctx) {
 	var playerRoute = [new Array(), new Array()];
 	var playerRouteInUse = 0;
 
-	//Easter egg relevant
-	$(document).bind('enterEgg', function(event, src) {
-		paused = true;
-		$('canvas#stage').hide();
-		$('iframe#egg').attr('src', src);
-		$('iframe#egg').show();
-	});
-	$(document).bind('leaveEgg', function() {
-		$('iframe#egg').attr('src', null);
-		$('iframe#egg').hide();
-		$('canvas#stage').show();
-	});
-
 	//Keyboard event
 	$(document).keydown(function(event){ 
-		$('input#enableSound')[0].blur();
+		document.querySelector('input#enableSound').blur();
 		if (!paused) {
 			switch (event.keyCode) {
 				case 37:	//Left
@@ -94,7 +81,6 @@ function Level(stage, ctx) {
 				playerRouteInUse = 1;
 			break;
 			case 80:	//P: Pause
-				$(document).trigger('leaveEgg');
 				paused = !paused;
 			break;
 			case 82:	//R: Restart
@@ -109,7 +95,6 @@ function Level(stage, ctx) {
 				}
 				stage.reset();
 				paused = false;
-				$(document).trigger('leaveEgg');
 			break;
 			case 32:	//Space: speed up the game
 				speed = 20;
@@ -118,7 +103,6 @@ function Level(stage, ctx) {
 				for (var i in playerRoute) {
 					playerRoute[i].splice(0, playerRoute[i].length);
 				}
-				$(document).trigger('leaveEgg');
 			break;
 		}
 	}); 
@@ -145,7 +129,7 @@ function Level(stage, ctx) {
 			break;
 		}
 	});
-	$('canvas#stage').bind('mousedown', function(event){
+	document.querySelector('canvas#stage').addEventListener('mousedown', function(event){
 		if (!paused) {
 			var e = event;
 
@@ -195,10 +179,10 @@ function Level(stage, ctx) {
 				stage.draw(ctx);
 
 				//Display and misceallanous things
-				$('div#paused').hide();
-				$('span#score').html(stage.score);
+				document.querySelector('div#paused').style.display='none';
+				document.querySelector('span#score').innerHTML=stage.score;
 			} else {
-				$('div#paused').show();
+				document.querySelector('div#paused').style.display=null;
 			}
 
 			//Level finished or continue

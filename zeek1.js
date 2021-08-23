@@ -1762,3 +1762,5 @@ levelData = [
 		stage.setObject(15, 10, new Crystal());
 	}),
 ];
+
+new Game('zeek1', levelData);
