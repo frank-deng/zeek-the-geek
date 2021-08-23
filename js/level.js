@@ -31,21 +31,89 @@ function getDirFromRoute(player, playerRoute) {
 	}
 	return nextDir;
 }
-function Level(stage, ctx) {
-	var score = 0;
+class Level{
+	score = 0;
+	speed = 100;
+	paused = false;
+	dirKeyPressed = [undefined, undefined];
+	nextDir = [undefined, undefined];
+	playerRoute = [new Array(), new Array()];
+	playerRouteInUse = 0;
+	constructor(stage, ctx){
+		this.stage=stage;
+		this.ctx=ctx;
+		document.addEventListener('keydown',this.keydownHandler);
+		document.addEventListener('keyup',this.keyupHandler);
+		document.querySelector('canvas#stage').addEventListener('mousedown',this.mousedownHandler);
+		//Play this level
+		window.setTimeout(this.timeoutFunc, this.speed);
+	}
+	onFinish(func){
+		this._onFinish=func;
+	}
+	callOnFinish(score){
+		if(this._onFinish){
+			this._onFinish(score);
+		}
+	}
+	timeoutFunc=()=>{
+		try{
+			if (!this.paused) {
+				var player = this.stage.player;
 
-	var speed = 70;
-	var paused = false;
+				//Decide which direction to go next
+				for (var i in player) {
+					if (!player[i] || player[i].Moveable.isMoving()) {
+						continue;
+					}
+					if (undefined != this.dirKeyPressed[i]) {
+						player[i].move(this.dirKeyPressed[i]);
+						this.playerRoute[i]=[];
+					} else if (undefined != this.nextDir[i]) {
+						if (player[i].Moveable.dir != this.nextDir[i]) {
+							player[i].move(this.nextDir[i]);
+						}
+						this.playerRoute[i]=[];
+						this.nextDir[i] = undefined;
+					} else {
+						var dir = getDirFromRoute(player[i], this.playerRoute[i]);
+						if (undefined != dir) {
+							player[i].move(dir);
+						}
+					}
+				}
 
-	var dirKeyPressed = [undefined, undefined];
-	var nextDir = [undefined, undefined];
-	var playerRoute = [new Array(), new Array()];
-	var playerRouteInUse = 0;
+				//Power the whole game
+				this.stage.tick(this.ctx);
+				this.stage.draw(this.ctx);
 
-	//Keyboard event
-	$(document).keydown(function(event){ 
+				//Display and misceallanous things
+				document.querySelector('div#paused').style.display='none';
+				document.querySelector('span#score').innerHTML=this.stage.score;
+			} else {
+				document.querySelector('div#paused').style.display=null;
+			}
+
+			//Level finished or continue
+			if (this.stage.finished) {
+				this.score = this.stage.score;
+				this.stage.reset();
+				document.removeEventListener('keydown',this.keydownHandler);
+				document.removeEventListener('keyup',this.keyupHandler);
+				document.querySelector('canvas#stage').removeEventListener('mousedown',this.mousedownHandler);
+				this.callOnFinish(this.score);
+			} else {
+				window.setTimeout(this.timeoutFunc, this.speed);
+			}
+		}catch(e){
+			console.error(e);
+			window.setTimeout(this.timeoutFunc, this.speed);
+		}
+	}
+	keydownHandler=(event)=>{
 		document.querySelector('input#enableSound').blur();
-		if (!paused) {
+		if (!this.paused) {
+			let nextDir=this.nextDir, dirKeyPressed=this.dirKeyPressed;
 			switch (event.keyCode) {
 				case 37:	//Left
 					nextDir[0] = dirKeyPressed[0] = DIR_WEST;
@@ -75,129 +143,67 @@ function Level(stage, ctx) {
 		}
 		switch (event.keyCode) {
 			case 48:	//9
-				playerRouteInUse = 0;
+				this.playerRouteInUse = 0;
 			break;
 			case 57:	//0
-				playerRouteInUse = 1;
+				this.playerRouteInUse = 1;
 			break;
 			case 80:	//P: Pause
-				paused = !paused;
+				this.paused = !this.paused;
 			break;
 			case 82:	//R: Restart
-				for (var i in nextDir) {
-					nextDir[i] = undefined;
+				for (var i in this.nextDir) {
+					this.nextDir[i] = undefined;
 				}
-				for (var i in dirKeyPressed) {
-					dirKeyPressed[i] = undefined;
+				for (var i in this.dirKeyPressed) {
+					this.dirKeyPressed[i] = undefined;
 				}
-				for (var i in playerRoute) {
-					playerRoute[i].splice(0, playerRoute[i].length);
+				for (var i in this.playerRoute) {
+					this.playerRoute[i]=[];
 				}
-				stage.reset();
-				paused = false;
+				this.stage.reset();
+				this.paused = false;
 			break;
 			case 32:	//Space: speed up the game
-				speed = 20;
-			break;
-			case 27:	//Esc: Back from the egg
-				for (var i in playerRoute) {
-					playerRoute[i].splice(0, playerRoute[i].length);
-				}
+				this.speed = 20;
 			break;
 		}
-	}); 
-	$(document).keyup(function(event){
-		if (!paused) {
+	}
+	keyupHandler=(event)=>{
+		if (!this.paused) {
 			switch (event.keyCode) {
 				case 37:	//Left
 				case 38:	//Up
 				case 39:	//Right
 				case 40:	//Down
-					dirKeyPressed[0] = undefined;
+					this.dirKeyPressed[0] = undefined;
 				break;
 				case 65:	//A
 				case 87:	//W
 				case 68:	//D
 				case 83:	//S
-					dirKeyPressed[1] = undefined;
+					this.dirKeyPressed[1] = undefined;
 				break;
 			}
 		}
 		switch (event.keyCode) {
 			case 32:
-				speed = 100;
+				this.speed = 100;
 			break;
 		}
-	});
-	document.querySelector('canvas#stage').addEventListener('mousedown', function(event){
-		if (!paused) {
-			var e = event;
-
-			xpos = (e.offsetX != undefined ? e.offsetX :
-				e.pageX - $(e.target).offset().left);
-			ypos = (e.offsetY != undefined ? e.offsetY :
-				e.pageY - $(e.target).offset().top);
-			col = Math.floor(xpos/IMAGE_W);
-			row = Math.floor(ypos/IMAGE_H);
-			if (event.shiftKey) {
-				playerRoute[playerRouteInUse].push({col:col, row:row});
-			} else {
-				playerRoute[playerRouteInUse] = [{col:col, row:row}];
-			}
+	}
+	mousedownHandler=(e)=>{
+		if (this.paused) {
+			return;
 		}
-	});
-
-	//Play this level
-	window.setTimeout(function(){
-		try{
-			if (!paused) {
-				var player = stage.player;
-
-				//Decide which direction to go next
-				for (var i in player) {
-					if (undefined != player[i] && !player[i].Moveable.isMoving()) {
-						if (undefined != dirKeyPressed[i]) {
-							player[i].move(dirKeyPressed[i]);
-							playerRoute[i].splice(0, playerRoute[i].length);
-						} else if (undefined != nextDir[i]) {
-							if (player[i].Moveable.dir != nextDir[i]) {
-								player[i].move(nextDir[i]);
-							}
-							playerRoute[i].splice(0, playerRoute[i].length);
-							nextDir[i] = undefined;
-						} else {
-							var dir = getDirFromRoute(player[i], playerRoute[i]);
-							if (undefined != dir) {
-								player[i].move(dir);
-							}
-						}
-					}
-				}
-
-				//Power the whole game
-				stage.tick(ctx);
-				stage.draw(ctx);
-
-				//Display and misceallanous things
-				document.querySelector('div#paused').style.display='none';
-				document.querySelector('span#score').innerHTML=stage.score;
-			} else {
-				document.querySelector('div#paused').style.display=null;
-			}
-
-			//Level finished or continue
-			if (stage.finished) {
-				score = stage.score;
-				stage.reset();
-				$(document).unbind('keydown keyup');
-				$('canvas#stage').unbind('mousedown');
-				$(document).trigger('levelFinished', [score]);
-			} else {
-				window.setTimeout(arguments.callee, speed);
-			}
-		}catch(e){
-			console.error(e);
-			window.setTimeout(arguments.callee, speed);
+		let xpos = e.offsetX;
+		let ypos = e.offsetY;
+		let col = Math.floor(xpos/IMAGE_W);
+		let row = Math.floor(ypos/IMAGE_H);
+		if (e.shiftKey) {
+			this.playerRoute[this.playerRouteInUse].push({col:col, row:row});
+		} else {
+			this.playerRoute[this.playerRouteInUse] = [{col:col, row:row}];
 		}
-	}, speed);
+	}
 }

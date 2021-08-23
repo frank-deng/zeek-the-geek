@@ -156,7 +156,7 @@ loadSound(Object.keys(audioTable)).then((data)=>{
 	audioTable=data;
 });
 function playAudio(audioFile) {
-	if(!$('input#enableSound')[0].checked || !audioTable[audioFile]){
+	if(!document.querySelector('input#enableSound').checked || !audioTable[audioFile]){
 		return;
 	}
 	let source = audioContext.createBufferSource();
@@ -164,17 +164,5 @@ function playAudio(audioFile) {
     source.loop = false;
     source.connect(audioContext.destination);
 	source.start();
-	/*
-	if (!$('input#enableSound')[0].checked){
-		return;
-	}
-	$('span#audio').append(
-		'<audio autoplay="autoplay">'
-		+ '<source src="audio/' + audioFile + '.wav" type="audio/wav"/>'
-		+ '</audio>');
-	$('span#audio audio').bind('ended', function(event){
-		event.target.remove();
-	});
-	*/
 }
 

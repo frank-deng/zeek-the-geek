@@ -5,7 +5,6 @@ function puzzlePackFinished(totalScore){
 	document.querySelector('div#gamefinished h1#totalscore').innerHTML=totalScore;
 	//Replay puzzle pack
 	try{
-		/*
 		let storageData=localStorage.getItem('puzzleProcess');
 		if(storageData){
 			storageData=JSON.parse(storageData);
@@ -13,7 +12,6 @@ function puzzlePackFinished(totalScore){
 			delete storageData[packName + '_Score'];
 			localStorage.setItem('puzzleProcess',JSON.stringify(storageData));
 		}
-		*/
 	}catch(e){
 		console.error(e);
 	}
@@ -24,7 +22,7 @@ function Game(packName, levelData) {
 	var levelNum = 0;
 
 	//Disable sound by default, read che
-	$('input#enableSound')[0].checked = false;
+	document.querySelector('input#enableSound').checked = false;
 
 	//Get puzzle pack stored data
 	try{
@@ -55,8 +53,7 @@ function Game(packName, levelData) {
 	//Start game
 	var level = new Level(levelData[levelNum], ctx);
 	document.querySelector('span#level').innerHTML=(levelNum + 1);
-
-	$(document).bind('levelFinished', function(event, levelScore){
+	const onFinish=function(levelScore){
 		totalScore += levelScore;
 		levelNum++;
 		try{
@@ -75,11 +72,13 @@ function Game(packName, levelData) {
 		if (levelNum < levelData.length) {
 			//Next level
 			level = new Level(levelData[levelNum], ctx);
+			level.onFinish(onFinish);
 			document.querySelector('span#level').innerHTML=(levelNum + 1);
 		} else {
 			//Game finished
 			level = undefined;
 			puzzlePackFinished(totalScore);
 		}
-	});
+	}
+	level.onFinish(onFinish);
 }
