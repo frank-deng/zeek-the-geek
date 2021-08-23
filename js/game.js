@@ -1,4 +1,4 @@
-function puzzlePackFinished(totalScore){
+function puzzlePackFinished(packName, totalScore){
 	document.querySelector('canvas#stage').style.display='none';
 	document.querySelector('div#footer').style.display='none';
 	document.querySelector('div#gamefinished').style.display='block';
@@ -46,7 +46,7 @@ function Game(packName, levelData) {
 
 	//Game already finished
 	if (levelNum >= levelData.length) {
-		puzzlePackFinished(totalScore);
+		puzzlePackFinished(packName, totalScore);
 		return;
 	} 
 
@@ -77,7 +77,7 @@ function Game(packName, levelData) {
 		} else {
 			//Game finished
 			level = undefined;
-			puzzlePackFinished(totalScore);
+			puzzlePackFinished(packName, totalScore);
 		}
 	}
 	level.onFinish(onFinish);
