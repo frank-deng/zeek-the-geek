@@ -116,8 +116,56 @@ class Moveable{
 	}
 }
 
-/*Audio handling*/
+//Handle sound via WebAudioAPI
+const audioContext=new window.AudioContext();
+async function loadSound(fileList){
+	let taskList=[], result={};
+	for(let fileName of fileList){
+		(function(fileName){
+			taskList.push({
+				fileName,
+				task:new Promise(async(resolve)=>{
+					let resp=await fetch(`./audio/${fileName}.wav`);
+					if(!resp.ok){
+						console.error(`Failed to load ${fileName}.wav: ${resp.statusText}`);
+						resolve(null);
+						return;
+					}
+					audioContext.decodeAudioData(await resp.arrayBuffer(),resolve);
+				})
+			});
+		})(fileName);
+	}
+	let respAll=await Promise.all(taskList.map(item=>item.task));
+	taskList.forEach((task,idx)=>{
+		result[task.fileName]=respAll[idx] || null;
+	});
+	return result;
+}
+let audioTable={
+	bitten:null,
+	crystal:null,
+	detonate:null,
+	grab:null,
+	lasershot:null,
+	pick:null,
+	poisoned:null,
+	step:null
+};
+loadSound(Object.keys(audioTable)).then((data)=>{
+	audioTable=data;
+	console.log(audioTable);
+});
 function playAudio(audioFile) {
+	if(!$('input#enableSound')[0].checked || !audioTable[audioFile]){
+		return;
+	}
+	let source = audioContext.createBufferSource();
+    source.buffer = audioTable[audioFile];
+    source.loop = false;
+    source.connect(audioContext.destination);
+	source.start();
+	/*
 	if (!$('input#enableSound')[0].checked){
 		return;
 	}
@@ -128,5 +176,6 @@ function playAudio(audioFile) {
 	$('span#audio audio').bind('ended', function(event){
 		event.target.remove();
 	});
+	*/
 }
 

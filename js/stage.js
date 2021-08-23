@@ -1,24 +1,32 @@
-function Stage(initfunc){
-	this.name = '';
-	this.cols = 17;
-	this.rows = 12;
+class Stage{
+	name = '';
+	cols = 17;
+	rows = 12;
 
-	this.data = new Array(this.rows * this.cols);
-	this.player = new Array();
-	this.demon = new Array();
+	data = new Array(17 * 12);
+	player = new Array();
+	demon = new Array();
 
-	this.posDestroyed = new Array();
-	this.finished = false;
-	this.score = 0;
+	posDestroyed = new Array();
+	finished = false;
+	score = 0;
 
-	this.getObject = function(col, row){
+	constructor(initfunc){
+		//Init the stage
+		if (undefined != initfunc) {
+			this.initfunc=initfunc;
+			initfunc(this);
+		}
+	}
+
+	getObject(col, row){
 		return this.data[row * this.cols + col];
 	}
-	this.setObject = function(col, row, object){
+	setObject(col, row, object){
 		delete this.data[row * this.cols + col];
 		this.data[row * this.cols + col] = object;
 	}
-	this.destroyObject = function(col, row){
+	destroyObject(col, row){
 		var object = this.getObject(col, row);
 		if (undefined != object) {
 			if (undefined != object.onDestroy) {
@@ -28,20 +36,18 @@ function Stage(initfunc){
 			this.setObject(col, row, undefined);
 		}
 	}
-	this.destroyPlayer = function(playerObj) {
+	destroyPlayer(playerObj) {
 		this.player[this.player.indexOf(playerObj)] = null;
 		this.player[this.player.indexOf(playerObj)] = undefined;
-		delete playerObj;
 		playerObj = null;
 	}
-	this.destroyDemon = function(demonObj) {
+	destroyDemon(demonObj) {
 		this.demon[this.demon.indexOf(demonObj)] = null;
 		this.demon[this.demon.indexOf(demonObj)] = undefined;
-		delete demonObj;
 		demonObj = null;
 	}
 
-	this.getNeighbour = function(col, row, dir) {
+	getNeighbour(col, row, dir) {
 		switch (dir) {
 			case DIR_NORTH:
 				if (row > 0) {
@@ -95,7 +101,7 @@ function Stage(initfunc){
 		}
 	}
 
-	this.tick = function(ctx) {
+	tick(ctx) {
 		//Players
 		var len = this.player.length;
 		for (var i = 0; i < len; i++) {
@@ -115,18 +121,18 @@ function Stage(initfunc){
 		//Objects on the stage
 		for (var row = 0; row < this.rows; row++) {
 			for (var col = 0; col < this.cols; col++) {
-				object = this.data[row * this.cols + col];
+				let object = this.data[row * this.cols + col];
 				if (undefined != object && undefined != object.onTick) {
 					object.onTick(this, col, row);
 				}
 			}
 		}
 	}
-	this.draw = function(ctx) {
+	draw(ctx) {
 		//Draw objects on the stage
 		for (var row = 0; row < this.rows; row++) {
 			for (var col = 0; col < this.cols; col++) {
-				object = this.data[row * this.cols + col];
+				let object = this.data[row * this.cols + col];
 				if (undefined == object || undefined == object.onDraw) {
 					drawImage(image[undefined], ctx, col, row);
 				} else {
@@ -159,7 +165,7 @@ function Stage(initfunc){
 			}
 		}
 	}
-	this.reset = function(){
+	reset(){
 		delete this.data;
 		delete this.player;
 		delete this.demon;
@@ -170,14 +176,9 @@ function Stage(initfunc){
 		this.posDestroyed = new Array();
 		this.finished = false;
 		this.score = 0;
-		if (undefined != initfunc) {
-			initfunc(this);
+		if (undefined != this.initfunc) {
+			this.initfunc(this);
 		}
-	}
-
-	//Init the stage
-	if (undefined != initfunc) {
-		initfunc(this);
 	}
 }
 

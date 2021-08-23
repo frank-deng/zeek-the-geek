@@ -165,49 +165,54 @@ function Level(stage, ctx) {
 
 	//Play this level
 	window.setTimeout(function(){
-		if (!paused) {
-			var player = stage.player;
+		try{
+			if (!paused) {
+				var player = stage.player;
 
-			//Decide which direction to go next
-			for (var i in player) {
-				if (undefined != player[i] && !player[i].Moveable.isMoving()) {
-					if (undefined != dirKeyPressed[i]) {
-						player[i].move(dirKeyPressed[i]);
-						playerRoute[i].splice(0, playerRoute[i].length);
-					} else if (undefined != nextDir[i]) {
-						if (player[i].Moveable.dir != nextDir[i]) {
-							player[i].move(nextDir[i]);
-						}
-						playerRoute[i].splice(0, playerRoute[i].length);
-						nextDir[i] = undefined;
-					} else {
-						var dir = getDirFromRoute(player[i], playerRoute[i]);
-						if (undefined != dir) {
-							player[i].move(dir);
+				//Decide which direction to go next
+				for (var i in player) {
+					if (undefined != player[i] && !player[i].Moveable.isMoving()) {
+						if (undefined != dirKeyPressed[i]) {
+							player[i].move(dirKeyPressed[i]);
+							playerRoute[i].splice(0, playerRoute[i].length);
+						} else if (undefined != nextDir[i]) {
+							if (player[i].Moveable.dir != nextDir[i]) {
+								player[i].move(nextDir[i]);
+							}
+							playerRoute[i].splice(0, playerRoute[i].length);
+							nextDir[i] = undefined;
+						} else {
+							var dir = getDirFromRoute(player[i], playerRoute[i]);
+							if (undefined != dir) {
+								player[i].move(dir);
+							}
 						}
 					}
 				}
+
+				//Power the whole game
+				stage.tick(ctx);
+				stage.draw(ctx);
+
+				//Display and misceallanous things
+				$('div#paused').hide();
+				$('span#score').html(stage.score);
+			} else {
+				$('div#paused').show();
 			}
 
-			//Power the whole game
-			stage.tick(ctx);
-			stage.draw(ctx);
-
-			//Display and misceallanous things
-			$('div#paused').hide();
-			$('span#score').html(stage.score);
-		} else {
-			$('div#paused').show();
-		}
-
-		//Level finished or continue
-		if (stage.finished) {
-			score = stage.score;
-			stage.reset();
-			$(document).unbind('keydown keyup');
-			$('canvas#stage').unbind('mousedown');
-			$(document).trigger('levelFinished', [score]);
-		} else {
+			//Level finished or continue
+			if (stage.finished) {
+				score = stage.score;
+				stage.reset();
+				$(document).unbind('keydown keyup');
+				$('canvas#stage').unbind('mousedown');
+				$(document).trigger('levelFinished', [score]);
+			} else {
+				window.setTimeout(arguments.callee, speed);
+			}
+		}catch(e){
+			console.error(e);
 			window.setTimeout(arguments.callee, speed);
 		}
 	}, speed);
