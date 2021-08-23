@@ -1,18 +1,17 @@
-function Player(stage, col, row, isGirl){
-	this.type = 'Player';
-	this.Moveable = new Moveable(col, row, DIR_SOUTH);
-	this.girl = isGirl;
-
-	this.stage = stage;
-	this.stage.setObject(col, row, new SpacerPlayer(this));
-
-	this.finished = false;
-	this.poisoned = false;
-	this.objectPushing = undefined;
-	this.invisible = 0;
-	this.sleepy = 0;
-
-	this.onTick = function(stage) {
+class Player{
+	type = 'Player';
+	finished = false;
+	poisoned = false;
+	objectPushing = undefined;
+	invisible = 0;
+	sleepy = 0;
+	constructor(stage, col, row, isGirl){
+		this.Moveable = new Moveable(col, row, DIR_SOUTH);
+		this.girl = isGirl;
+		this.stage = stage;
+		this.stage.setObject(col, row, new SpacerPlayer(this));
+	}
+	onTick(stage) {
 		var result = this.Moveable.onTick();
 		if (undefined != result) {	//Player has just finished moving
 			this.stage.setObject(result.colPrev, result.rowPrev, undefined);
@@ -48,7 +47,7 @@ function Player(stage, col, row, isGirl){
 			this.invisible--;
 		}
 	}
-	this.move = function(dir){
+	move(dir){
 		//Player is moving
 		if (this.Moveable.step > 0) {
 			return false;
@@ -73,7 +72,7 @@ function Player(stage, col, row, isGirl){
 				this.stage.destroyObject(nextPos.col, nextPos.row);
 				playAudio('pick');
 			} else if (nextPosObject.push == true) {
-				nextPos2 = this.stage.getNeighbour(nextPos.col, nextPos.row, dir);
+				let nextPos2 = this.stage.getNeighbour(nextPos.col, nextPos.row, dir);
 				if (undefined == nextPos2
 					|| undefined != this.stage.getObject(nextPos2.col, nextPos2.row)) {
 					return false;
@@ -91,8 +90,7 @@ function Player(stage, col, row, isGirl){
 		this.stage.getObject(this.Moveable.colPrev, this.Moveable.rowPrev).leaving = true;
 		return true;
 	}
-
-	this.onDrawMoving = function(ctx) {
+	onDrawMoving(ctx) {
 		var idx_img = [0, 1, 0, 2, 0, 1, 0, 2];
 		var __type = (this.girl ? this.type + 'Girl' : this.type);
 		var img = (this.invisible > 0 ? image[undefined]
@@ -126,7 +124,7 @@ function Player(stage, col, row, isGirl){
 			this.objectPushing.onDraw(ctx, _col, _row);
 		}
 	}
-	this.onDrawSleepy = function(ctx) {
+	onDrawSleepy(ctx) {
 		if (this.invisible > 0) {
 			this.Moveable.onDraw(image[undefined], ctx);
 			return;
@@ -148,7 +146,7 @@ function Player(stage, col, row, isGirl){
 		}
 		this.Moveable.onDraw(img, ctx);
 	}
-	this.onDraw = function(ctx) {
+	onDraw(ctx) {
 		if (this.Moveable.isMoving()) {
 			this.sleepy = 0;
 			this.onDrawMoving(ctx);
