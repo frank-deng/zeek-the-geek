@@ -5666,3 +5666,5 @@ levelData = [
 
 	}),
 ];
+
+new Game('kidstuff', levelData);

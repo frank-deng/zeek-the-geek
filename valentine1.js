@@ -213,3 +213,5 @@ levelData = [
 		stage.setObject(14, 10, new PFlower(true));
 	}),
 ];
+
+new Game('valentine1', levelData);

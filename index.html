@@ -264,16 +264,22 @@
 				<p>Zeek the Geek Designer requires the installation of Python as well as its Tcl/Tk module.</p>
 			</div>
 		</div>
-		<script type='text/javascript' src='puzzlePacks.js'></script>
 		<script type='text/javascript'>
-			var puzzlePacksDom=document.querySelector('div#puzzlePacks ul');
-			for (label in puzzlePacks){
-				var item=document.createElement('li');
-				item.innerHTML='<a href="' + label + '.html">'
-					+ puzzlePacks[label]
-					+ '</a>';
-				puzzlePacksDom.appendChild(item);
-			}
+fetch('./puzzlePacks.json').then(async(resp)=>{
+	if(!resp.ok){
+		console.error('Failed to load puzzle packs');
+		return;
+	}
+	let puzzlePacks = await resp.json();
+	let puzzlePacksDom=document.querySelector('div#puzzlePacks ul');
+	for (label in puzzlePacks){
+		var item=document.createElement('li');
+		item.innerHTML='<a href="game.html?puzzlePack=' + label + '">'
+			+ puzzlePacks[label]
+			+ '</a>';
+		puzzlePacksDom.appendChild(item);
+	}
+});
 		</script>
 	</body>
 </html>

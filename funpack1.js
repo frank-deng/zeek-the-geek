@@ -1000,3 +1000,5 @@ levelData = [
 		
 	}),
 ];
+
+new Game('funpack1', levelData);

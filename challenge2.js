@@ -5942,3 +5942,5 @@ levelData = [
 		stage.getObject(5,1).eat = undefined;
 	}),
 ];
+
+new Game('challenge2', levelData);

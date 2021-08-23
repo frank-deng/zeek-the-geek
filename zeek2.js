@@ -5592,3 +5592,5 @@ levelData = [
 
 	}),
 ];
+
+new Game('zeek2', levelData);

@@ -5321,3 +5321,4 @@ levelData = [
 
 	}),
 ];
+new Game('challenge', levelData);

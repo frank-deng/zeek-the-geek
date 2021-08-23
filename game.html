@@ -5,11 +5,9 @@
 		<link href="favicon.ico" mce_href="favicon.ico" type="image/x-icon" rel="bookmark"/>
 		<link href="favicon.ico" mce_href="favicon.ico" type="image/x-icon" rel='icon'/>
 		<link href="favicon.ico" mce_href="favicon.ico" type="image/x-icon" rel="shortcut icon"/>
-		<title>Challenge</title>
+		<title>Loading Puzzle Pack...</title>
 
 		<link href='game.css' rel='stylesheet' type='text/css'/>
-		<script type='text/javascript' src='lib/jquery-2.1.0.min.js'></script>
-
 		<script type='text/javascript' src='js/image.js'></script>
 		<script type='text/javascript' src='js/misc.js'></script>
 
@@ -21,15 +19,6 @@
 		<script type='text/javascript' src='js/level.js'></script>
 		<script type='text/javascript' src='js/game.js'></script>
 
-		<!--Level data file-->
-		<script type='text/javascript' src='challenge.js'></script>
-
-		<script type='text/javascript'>
-			packName = 'challenge';
-			$(window).load(function(){
-				new Game(packName, levelData);
-			});
-		</script>
 	</head>
 	<body>
 		<canvas id='stage' width='612px' height='432px'>
@@ -43,8 +32,6 @@
 			<h2>Your total score is:</h2>
 			<h1 id='totalscore'></h1>
 			<p>
-				<input type='button' id='replay' value='Play Again'/>
-				&nbsp;
 				<a class='back' href='index.html'><input type='button' value='Exit'/></a>
 			</p>
 		</div>
@@ -66,8 +53,27 @@
 				<input type='button' value='Exit'/>
 			</a>
 		</div>
+		<script>
+let packMatch=/puzzlePack=([A-Za-z0-9]+)/.exec(location.search);
+if(!packMatch){
+	console.error('Failed to load puzzle pack');
+}
+let pack=packMatch[1];
 
-		<span id='audio'>
-		</span>
+fetch('./puzzlePacks.json').then(async(resp)=>{
+	if(!resp.ok){
+		console.error('Failed to load puzzle packs');
+		return;
+	}
+	let puzzlePacks = await resp.json();
+	if(!puzzlePacks[pack]){
+		console.error('Failed to load puzzle pack');
+		return;
+	}
+	let scriptTag=document.createElement('script');
+	scriptTag.setAttribute('src',`${pack}.js`);
+	document.body.appendChild(scriptTag);
+});
+		</script>
 	</body>
 </html>

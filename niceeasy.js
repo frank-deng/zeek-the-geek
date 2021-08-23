@@ -5428,3 +5428,5 @@ levelData = [
 
 	}),
 ];
+
+new Game('niceeasy', levelData);

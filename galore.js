@@ -11037,3 +11037,4 @@ levelData = [
 
 	}),
 ];
+new Game('galore', levelData);
