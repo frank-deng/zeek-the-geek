@@ -70,6 +70,7 @@ fetch('./puzzlePacks.json').then(async(resp)=>{
 		console.error('Failed to load puzzle pack');
 		return;
 	}
+	document.title=puzzlePacks[pack];
 	let scriptTag=document.createElement('script');
 	scriptTag.setAttribute('src',`${pack}.js`);
 	document.body.appendChild(scriptTag);

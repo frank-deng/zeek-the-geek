@@ -21,8 +21,24 @@ function Game(packName, levelData) {
 	var totalScore = 0;
 	var levelNum = 0;
 
-	//Disable sound by default, read che
+	//Disable sound by default
 	document.querySelector('input#enableSound').checked = false;
+	document.querySelector('input#enableSound').addEventListener('change',(e)=>{
+		let settingData=localStorage.getItem('gameSetting') || {};
+		settingData.soundOn=e.target.checked;
+		localStorage.setItem('gameSetting',JSON.stringify(settingData));
+	});
+
+	//Read sound on/off from localStorage
+	try{
+		let settingData=localStorage.getItem('gameSetting');
+		if(settingData){
+			settingData=JSON.parse(settingData);
+			document.querySelector('input#enableSound').checked = settingData.soundOn;
+		}
+	}catch(e){
+		console.error(e);
+	}
 
 	//Get puzzle pack stored data
 	try{
