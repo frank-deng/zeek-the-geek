@@ -679,8 +679,10 @@ class SpacerPlayer{
 		this.src = src;
 	}
 	onEat(demon, stage, col, row) {
-		playAudio('bitten');
 		if (!this.leaving) {
+			if(!this.src.poisoned){
+				playAudio('bitten');
+			}
 			this.src.poisoned = true;
 		}
 	}

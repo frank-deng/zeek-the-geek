@@ -154,7 +154,6 @@ let audioTable={
 };
 loadSound(Object.keys(audioTable)).then((data)=>{
 	audioTable=data;
-	console.log(audioTable);
 });
 function playAudio(audioFile) {
 	if(!$('input#enableSound')[0].checked || !audioTable[audioFile]){
