@@ -1,3 +1,5 @@
+'use strict'
+
 import Level from './level';
 import Stage from './stage';
 import Demon from './demon';
@@ -34,6 +36,10 @@ import {
 	DIR_RIGHT,
 	DIR_BACK,
 } from './misc';
+import{
+	IMAGE_W,
+	IMAGE_H,
+} from './image';
 
 Object.assign(window,{
 	Stage,
@@ -54,6 +60,8 @@ Object.assign(window,{
 	Pill,
 	Treasure,
 	Wall,
+	IMAGE_W,
+	IMAGE_H,
 	DIR_NORTH,
 	DIR_EAST,
 	DIR_WEST,

@@ -1,4 +1,6 @@
 import mazeSolver from './maze';
+import { getDir } from './misc';
+import {IMAGE_W, IMAGE_H} from './image';
 
 function getDirFromRoute(player, playerRoute) {
 	var nextDir = undefined;
@@ -20,7 +22,7 @@ function getDirFromRoute(player, playerRoute) {
 			var solved = mazeSolver(player.stage, player,
 				playerRoute[0].col, playerRoute[0].row);
 			if (undefined != solved) {
-				len = solved.length
+				let len = solved.length
 				for (var i = len - 1; i >= 0; i--) {
 					playerRoute.splice(0, 0, solved[i]);
 				}

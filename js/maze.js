@@ -110,7 +110,7 @@ export default function(stage, player, destCol, destRow) {
 		var col, row;
 		for (row = 0; row < stage.rows; row++) {
 			for (col = 0; col < stage.cols; col++) {
-				object = stage.getObject(col, row);
+				let object = stage.getObject(col, row);
 				if (undefined == object) {
 					continue;
 				}

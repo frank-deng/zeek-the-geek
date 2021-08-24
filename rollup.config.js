@@ -1,4 +1,5 @@
 //import babel from 'rollup-plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
 import { terser } from "rollup-plugin-terser";
 
 export default {
@@ -7,7 +8,7 @@ export default {
         name:"Game",
         file:"game.js",
         format:'umd',
-        sourcemap:false,
+        sourcemap:true,
         compact:true
     },
     plugins: [
@@ -16,6 +17,7 @@ export default {
             exclude: 'node_modules/**',
         }),
         */
+        commonjs(),
         terser()
     ]
 };
