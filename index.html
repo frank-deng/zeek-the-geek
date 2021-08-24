@@ -112,8 +112,7 @@
 				<a name='puzzlePacks'></a>
 				<div id='puzzlePacks'>
 					<h4>Puzzle Packs</h4>
-					<ul>
-					</ul>
+					<div id='puzzlePackLoading'>Loading...</div>
 				</div>
 
 				<h3>TABLE OF CONTENTS</h3>
@@ -260,25 +259,30 @@
 				<p>For further information, please see the help of Zeek the Geek Designer.</p>
 
 				<h3>Requirements</h3>
-				<p>A browser supports HTML5 and ES6 well, e.g: Firefox, Chrome, Microsoft Edge.</p>
+				<p>A modern PC browser like Firefox, Chrome, Microsoft Edge.</p>
 				<p>Zeek the Geek Designer requires the installation of Python as well as its Tcl/Tk module.</p>
 			</div>
 		</div>
 		<script type='text/javascript'>
+let puzzlePacksDom=document.getElementById('puzzlePacks');
 fetch('./puzzlePacks.json').then(async(resp)=>{
 	if(!resp.ok){
-		console.error('Failed to load puzzle packs');
+		document.getElementById('puzzlePackLoading').innerHTML='Loading failed.'
 		return;
 	}
 	let puzzlePacks = await resp.json();
-	let puzzlePacksDom=document.querySelector('div#puzzlePacks ul');
+	puzzlePacksDom.removeChild(document.getElementById('puzzlePackLoading'));
+	let ul=document.createElement('ul');
 	for (label in puzzlePacks){
 		var item=document.createElement('li');
-		item.innerHTML='<a href="game.html?puzzlePack=' + label + '">'
-			+ puzzlePacks[label]
-			+ '</a>';
-		puzzlePacksDom.appendChild(item);
+		var link=document.createElement('a');
+		link.setAttribute('href',`game.html?puzzlePack=${label}`);
+		var puzzlePackName=document.createTextNode(puzzlePacks[label]);
+		link.appendChild(puzzlePackName);
+		item.appendChild(link);
+		ul.appendChild(item);
 	}
+	puzzlePacksDom.appendChild(ul);
 });
 		</script>
 	</body>
