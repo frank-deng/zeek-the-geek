@@ -1664,6 +1664,9 @@ levelData = [
 		];
 		for (var y = 1; y <= 3; y++) {
 			for (var x = 1; x <= 15; x++) {
+				if(2==y && 6==x){
+					continue;
+				}
 				var i = Math.floor(Math.random() * candidate.length);
 				stage.setObject(x, y,
 					new candidate[i].object(candidate[i].param));
