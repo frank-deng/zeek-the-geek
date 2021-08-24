@@ -587,7 +587,7 @@ levelData = [
 		stage.setObject(12, 10, new Flower(true));
 		stage.setObject(13, 10, new PFlower(false));
 		stage.setObject(14, 10, new Apple());
-		stage.demon.push(new Demon(stage, 15, 10, DIR_WEST));
+		stage.demon.push(new Demon(stage, 15, 10, DIR_EAST));
 		stage.setObject(16, 10, new Wall(0));
 
 		//Row 11
@@ -609,8 +609,6 @@ levelData = [
 		stage.setObject(15, 11, new Wall(0));
 		stage.setObject(16, 11, new Wall(0));
 
-		/* Custom script */
-		stage.getObject(14, 10).eat = undefined;
 	}),
 	/* Level 4 */
 	new Stage(function(stage){
@@ -727,7 +725,7 @@ levelData = [
 		stage.setObject(11, 6, new Flower(true));
 		stage.setObject(12, 6, new Egg());
 		stage.setObject(13, 6, new Treasure());
-		stage.setObject(14, 6, new Mushroom(true));
+		stage.demon.push(new Demon(stage, 14, 6, DIR_EAST));
 		stage.demon.push(new Demon(stage, 15, 6, DIR_SOUTH));
 		stage.setObject(16, 6, new Wall(8));
 
@@ -739,10 +737,9 @@ levelData = [
 		stage.setObject(7, 7, new Wall(8));
 		stage.setObject(8, 7, new Egg());
 		stage.setObject(10, 7, new Crystal());
-		stage.setObject(11, 7, new Apple());
 		stage.setObject(13, 7, new Mushroom(true));
-		stage.demon.push(new Demon(stage, 14, 7, DIR_WEST));
-		stage.demon.push(new Demon(stage, 15, 7, DIR_WEST));
+		stage.demon.push(new Demon(stage, 14, 7, DIR_EAST));
+		stage.demon.push(new Demon(stage, 15, 7, DIR_EAST));
 		stage.setObject(16, 7, new Wall(8));
 
 		//Row 8
@@ -757,10 +754,10 @@ levelData = [
 		stage.setObject(9, 8, new Crystal());
 		stage.setObject(10, 8, new Wall(8));
 		stage.setObject(11, 8, new PFlower(false));
-		stage.setObject(12, 8, new PFlower(true));
-		stage.setObject(13, 8, new Mushroom(true));
-		stage.demon.push(new Demon(stage, 14, 8, DIR_WEST));
-		stage.demon.push(new Demon(stage, 15, 8, DIR_WEST));
+		stage.setObject(12, 8, new PFlower(false));
+		stage.setObject(13, 8, new Apple());
+		stage.demon.push(new Demon(stage, 14, 8, DIR_EAST));
+		stage.demon.push(new Demon(stage, 15, 8, DIR_EAST));
 		stage.setObject(16, 8, new Wall(8));
 
 		//Row 9
@@ -776,8 +773,8 @@ levelData = [
 		stage.setObject(11, 9, new PFlower(true));
 		stage.setObject(12, 9, new PFlower(true));
 		stage.setObject(13, 9, new Mushroom(true));
-		stage.demon.push(new Demon(stage, 14, 9, DIR_WEST));
-		stage.demon.push(new Demon(stage, 15, 9, DIR_WEST));
+		stage.demon.push(new Demon(stage, 14, 9, DIR_EAST));
+		stage.demon.push(new Demon(stage, 15, 9, DIR_EAST));
 		stage.setObject(16, 9, new Wall(8));
 
 		//Row 10
@@ -791,8 +788,8 @@ levelData = [
 		stage.setObject(11, 10, new PFlower(true));
 		stage.setObject(12, 10, new PFlower(true));
 		stage.setObject(13, 10, new Mushroom(true));
-		stage.demon.push(new Demon(stage, 14, 10, DIR_WEST));
-		stage.demon.push(new Demon(stage, 15, 10, DIR_WEST));
+		stage.demon.push(new Demon(stage, 14, 10, DIR_EAST));
+		stage.demon.push(new Demon(stage, 15, 10, DIR_EAST));
 		stage.setObject(16, 10, new Wall(8));
 
 		//Row 11
@@ -814,20 +811,6 @@ levelData = [
 		stage.setObject(15, 11, new Wall(8));
 		stage.setObject(16, 11, new Wall(8));
 
-		/* Custom script */
-		stage.getObject(14, 6).eat = undefined;
-		stage.getObject(13, 7).eat = undefined;
-		stage.getObject(13, 8).eat = undefined;
-		stage.getObject(13, 9).eat = undefined;
-		stage.getObject(13, 10).eat = undefined;
-		stage.getObject(13, 6).onPick = function(player) {
-			var stage = player.stage;
-			stage.destroyObject(14, 6);
-			stage.destroyObject(13, 7);
-			stage.getObject(13, 8).eat = true;
-			stage.getObject(13, 9).eat = true;
-			stage.getObject(13, 10).eat = true;
-		}
 	}),
 	/* Level 5 */
 	new Stage(function(stage){
@@ -4529,11 +4512,11 @@ levelData = [
 
 		//Row 1
 		stage.setObject(0, 1, new Wall(3));
-		stage.demon.push(new Demon(stage, 1, 1, DIR_SOUTH));
-		stage.demon.push(new Demon(stage, 2, 1, DIR_WEST));
-		stage.demon.push(new Demon(stage, 3, 1, DIR_WEST));
-		stage.demon.push(new Demon(stage, 4, 1, DIR_WEST));
-		stage.demon.push(new Demon(stage, 5, 1, DIR_WEST));
+		stage.demon.push(new Demon(stage, 1, 1, DIR_EAST));
+		stage.demon.push(new Demon(stage, 2, 1, DIR_EAST));
+		stage.demon.push(new Demon(stage, 3, 1, DIR_EAST));
+		stage.demon.push(new Demon(stage, 4, 1, DIR_EAST));
+		stage.demon.push(new Demon(stage, 5, 1, DIR_EAST));
 		stage.setObject(6, 1, new Wall(3));
 		stage.setObject(8, 1, new Crystal());
 		stage.demon.push(new Demon(stage, 9, 1, DIR_WEST));
@@ -4548,10 +4531,10 @@ levelData = [
 		//Row 2
 		stage.setObject(0, 2, new Wall(3));
 		stage.setObject(1, 2, new Apple());
-		stage.demon.push(new Demon(stage, 2, 2, DIR_WEST));
-		stage.demon.push(new Demon(stage, 3, 2, DIR_WEST));
-		stage.demon.push(new Demon(stage, 4, 2, DIR_WEST));
-		stage.demon.push(new Demon(stage, 5, 2, DIR_WEST));
+		stage.demon.push(new Demon(stage, 2, 2, DIR_EAST));
+		stage.demon.push(new Demon(stage, 3, 2, DIR_EAST));
+		stage.demon.push(new Demon(stage, 4, 2, DIR_EAST));
+		stage.demon.push(new Demon(stage, 5, 2, DIR_EAST));
 		stage.setObject(6, 2, new Wall(3));
 		stage.setObject(7, 2, new Crystal());
 		stage.setObject(8, 2, new Egg());
@@ -4714,11 +4697,6 @@ levelData = [
 		stage.setObject(15, 11, new Wall(3));
 		stage.setObject(16, 11, new Wall(3));
 
-		/* Custom script */
-		stage.getObject(1, 2).eat = undefined;
-		stage.getObject(1, 3).onEat = function(demon, stage, col, row) {
-			stage.destroyObject(1, 2);
-		}
 	}),
 	/* Level 25 */
 	new Stage(function(stage){
@@ -4807,7 +4785,7 @@ levelData = [
 		stage.setObject(11, 4, new Key());
 		stage.setObject(12, 4, new Egg());
 		stage.setObject(14, 4, new Mushroom(true));
-		stage.demon.push(new Demon(stage, 15, 4, DIR_WEST));
+		stage.demon.push(new Demon(stage, 15, 4, DIR_EAST));
 		stage.setObject(16, 4, new LaserGun());
 
 		//Row 5
@@ -4822,7 +4800,7 @@ levelData = [
 		stage.setObject(11, 5, new Egg());
 		stage.setObject(12, 5, new Bomb());
 		stage.setObject(14, 5, new Mushroom(true));
-		stage.demon.push(new Demon(stage, 15, 5, DIR_WEST));
+		stage.demon.push(new Demon(stage, 15, 5, DIR_EAST));
 		stage.setObject(16, 5, new LaserGun());
 
 		//Row 6
@@ -4858,7 +4836,7 @@ levelData = [
 		stage.setObject(12, 7, new Egg());
 		stage.setObject(13, 7, new PFlower(false));
 		stage.setObject(14, 7, new Apple());
-		stage.demon.push(new Demon(stage, 15, 7, DIR_WEST));
+		stage.demon.push(new Demon(stage, 15, 7, DIR_EAST));
 		stage.setObject(16, 7, new Wall(1));
 
 		//Row 8
@@ -4928,13 +4906,6 @@ levelData = [
 		stage.setObject(15, 11, new Wall(1));
 		stage.setObject(16, 11, new Wall(1));
 
-		/* Custom script */
-		stage.getObject(14, 4).eat = undefined;
-		stage.getObject(14, 5).eat = undefined;
-		stage.getObject(14, 7).eat = undefined;
-		stage.getObject(14, 5).onDestroy = function(stage, col, row) {
-			stage.destroyObject(14, 4);
-		}
 	}),
 	/* Level 26 */
 	new Stage(function(stage){
@@ -4969,7 +4940,7 @@ levelData = [
 		stage.setObject(11, 1, new PFlower(true));
 		stage.setObject(13, 1, new Wall(6));
 		stage.setObject(14, 1, new Mushroom(true));
-		stage.demon.push(new Demon(stage, 15, 1, DIR_EAST));
+		stage.demon.push(new Demon(stage, 15, 1, DIR_WEST));
 		stage.setObject(16, 1, new Wall(6));
 
 		//Row 2
@@ -4984,7 +4955,7 @@ levelData = [
 		stage.setObject(11, 2, new Flower(true));
 		stage.setObject(12, 2, new Apple());
 		stage.setObject(13, 2, new Wall(6));
-		stage.demon.push(new Demon(stage, 14, 2, DIR_WEST));
+		stage.demon.push(new Demon(stage, 14, 2, DIR_EAST));
 		stage.setObject(15, 2, new Mushroom(true));
 		stage.setObject(16, 2, new Wall(6));
 
@@ -5109,7 +5080,7 @@ levelData = [
 		stage.setObject(3, 10, new Flower(false));
 		stage.setObject(4, 10, new Flower(false));
 		stage.setObject(5, 10, new Apple());
-		stage.demon.push(new Demon(stage, 6, 10, DIR_WEST));
+		stage.demon.push(new Demon(stage, 6, 10, DIR_EAST));
 		stage.setObject(7, 10, new Wall(6));
 		stage.setObject(8, 10, new Key());
 		stage.setObject(9, 10, new PFlower(true));
@@ -5140,8 +5111,6 @@ levelData = [
 		stage.setObject(15, 11, new Wall(6));
 		stage.setObject(16, 11, new Wall(6));
 
-		/* Custom script */
-		stage.getObject(5, 10).eat = undefined;
 	}),
 	/* Level 27 */
 	new Stage(function(stage){
@@ -5713,7 +5682,7 @@ levelData = [
 		stage.setObject(11, 10, new Flower(false));
 		stage.setObject(12, 10, new Flower(false));
 		stage.setObject(14, 10, new Apple());
-		stage.demon.push(new Demon(stage, 15, 10, DIR_WEST));
+		stage.demon.push(new Demon(stage, 15, 10, DIR_EAST));
 		stage.setObject(16, 10, new Wall(0));
 
 		//Row 11
@@ -5735,8 +5704,6 @@ levelData = [
 		stage.setObject(15, 11, new Wall(0));
 		stage.setObject(16, 11, new Wall(0));
 
-		/* Custom script */
-		stage.getObject(14,10).eat = undefined;
 	}),
 	/* Level 30 */
 	new Stage(function(stage){
@@ -5765,7 +5732,7 @@ levelData = [
 		stage.setObject(3, 1, new Flower(false));
 		stage.setObject(4, 1, new Wall(6));
 		stage.setObject(5, 1, new Apple());
-		stage.demon.push(new Demon(stage, 6, 1, DIR_WEST));
+		stage.demon.push(new Demon(stage, 6, 1, DIR_EAST));
 		stage.setObject(7, 1, new Wall(6));
 		stage.setObject(8, 1, new Flower(false));
 		stage.setObject(9, 1, new Flower(false));
@@ -5938,10 +5905,7 @@ levelData = [
 		stage.setObject(15, 11, new Wall(6));
 		stage.setObject(16, 11, new Wall(6));
 
-		/* Custom script */
-		stage.getObject(5,1).eat = undefined;
 	}),
 ];
-
 document.title='Challenge II';
-new Game('challenge2', levelData);
+new Game('challenge2',levelData);
