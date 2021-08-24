@@ -99,12 +99,12 @@ class ZeekDesigner(tkinter.Tk):
 		return __objSelected;
 
 	def doSelect(self, event):
-		pos = (event.x / 36, event.y / 36);
+		pos = (int(event.x / 36), int(event.y / 36));
 		self.selectObj(pos);
 
 	def doSetObj(self, event):
 		self.modified = True;
-		pos = (event.x / self.stage.imgWidth, event.y / self.stage.imgHeight);
+		pos = (int(event.x / self.stage.imgWidth), int(event.y / self.stage.imgHeight));
 		if (pos[0] < 0 or pos[0] >= self.stage.cols or pos[1] < 0 or pos[1] >= self.stage.rows):
 			return;
 
@@ -116,7 +116,7 @@ class ZeekDesigner(tkinter.Tk):
 
 	def doErase(self, event):
 		self.modified = True;
-		pos = (event.x / self.stage.imgWidth, event.y / self.stage.imgHeight);
+		pos = (int(event.x / self.stage.imgWidth), int(event.y / self.stage.imgHeight));
 		if (pos[0] < 0 or pos[0] >= self.stage.cols or pos[1] < 0 or pos[1] >= self.stage.rows):
 			return;
 		self.stage.set(pos[0], pos[1], None);
@@ -165,8 +165,8 @@ class ZeekDesigner(tkinter.Tk):
 					return;
 			filename = tkFileDialog.askopenfilename(
 				filetypes = [
-					('XML document', '*.xml'),
 					('Zeek Level File', '*.zlv'),
+					('XML document', '*.xml'),
 				],
 				defaultextension = '.zlv',
 				title = 'Open'
@@ -225,9 +225,9 @@ class ZeekDesigner(tkinter.Tk):
 		w_about = tk.Toplevel(self);
 		w_about.wm_title('About Zeek the Geek Designer');
 		w_about.resizable(False, False);	#Disable resizing
-		l_about = Tkinter.Label(w_about, text = TEXT_ABOUT);
+		l_about = tkinter.Label(w_about, text = TEXT_ABOUT);
 		l_about.grid(row = 0, column = 0, padx = 20, pady = 10);
-		btn_ok = Tkinter.Button(w_about, text = 'OK', command = w_about.destroy);
+		btn_ok = tkinter.Button(w_about, text = 'OK', command = w_about.destroy);
 		btn_ok.grid(row = 1, column = 0, padx = 5, pady = 5, ipadx = 10, ipady = 3);
 		btn_ok.focus();
 		self.wait_window(w_about);

@@ -284,10 +284,14 @@ def export(filelist, destfile):
 
 	#End of Data
 	f.write("];\n");
+	base, ext = os.path.splitext(os.path.basename(destfile));
+	f.write("document.title='%s';\n"%(base));
+	f.write("new Game('%s',levelData);\n"%(base));
 	f.close();
 
 	#Get the base name of output file,
 	#then generate the corresponding HTML file.
+	'''
 	pwd = os.path.dirname(destfile);
 	base, ext = os.path.splitext(os.path.basename(destfile));
 	pageFile = pwd + os.sep + base + '.html';
@@ -299,6 +303,7 @@ def export(filelist, destfile):
 		fdest.close();
 
 	return pageFile;
+'''
 
 class Export(tkinter.Tk):
 	def moveUp(self, pos):
@@ -322,8 +327,8 @@ class Export(tkinter.Tk):
 			files = tkFileDialog.askopenfilenames(
 				title='Choose files to export',
 				filetypes = [
-					('XML document', '*.xml'),
 					('Zeek Level File', '*.zlv'),
+					('XML document', '*.xml'),
 				],
 				defaultextension = '.zlv',
 			);
@@ -350,6 +355,9 @@ class Export(tkinter.Tk):
 
 	def doExport(self):
 		try:
+			if(len(self.fileLB.get(0, END)) <= 0):
+				tkMessageBox.showerror('Error', 'Please add files first.');
+				return;
 			destfile = tkFileDialog.asksaveasfilename(
 				filetypes = [
 					('Level data', '*.js'),
@@ -358,7 +366,8 @@ class Export(tkinter.Tk):
 				title = 'Output file'
 			);
 			if (destfile not in (None, '')):
-				webbrowser.open(export(self.fileLB.get(0, END), destfile));
+				export(self.fileLB.get(0, END), destfile);
+				#webbrowser.open(export(self.fileLB.get(0, END), destfile));
 		except:
 			traceback.print_exc();
 			tkMessageBox.showerror('Error', 'Export failed.');
