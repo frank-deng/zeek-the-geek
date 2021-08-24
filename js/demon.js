@@ -51,7 +51,6 @@ class Demon{
 		this.Moveable = new Moveable(col, row, initDir);
 		this.stage = stage;
 		this.stage.setObject(col, row, new SpacerDemon(this));
-		this.regexpSpacer = new RegExp('Spacer.*');
 		this.dir = initDir;
 	}
 	move(dir){
@@ -76,45 +75,76 @@ class Demon{
 			if (undefined != result) {	//Demon has just finished moving
 				this.stage.setObject(result.colPrev, result.rowPrev, undefined);
 			}
-		} else {
-			var dirArray = this.turning(this);
-			for (var i in dirArray) {
-				this.dir = dirArray[i];
-				var pos = stage.getNeighbour(this.Moveable.col, this.Moveable.row, dirArray[i]);
-				//Edge reached
-				if (undefined == pos) {
+			return;
+		}
+		let dirArray = this.turning(this), surrounded=true;
+
+		//If a demon is surrended by objects, then check whether the object in front of the demon is eatable
+		for(let dir of dirArray){
+			let pos = stage.getNeighbour(this.Moveable.col, this.Moveable.row, dir);
+			if (undefined == pos) {
+				continue;
+			}
+			let object = stage.getObject(pos.col, pos.row);
+			if(!object){
+				surrounded=false;
+			}
+		}
+		if(surrounded){
+			//Get the object in front
+			let pos = stage.getNeighbour(this.Moveable.col, this.Moveable.row, this.dir);
+			if(!pos){
+				return;
+			}
+			let object = stage.getObject(pos.col, pos.row);
+			if(object && !/Spacer.*/.test(object.type) && object.eat){
+				//Execute trigger onEat()
+				object.onEat && object.onEat(this, stage, pos.col, pos.row);
+				//Destroy the object!!!
+				stage.destroyObject(pos.col, pos.row);
+				if (this.move(this.dir)) {
+					this.Moveable.step--;
+				}
+			}
+			return;
+		}
+
+		for (var i in dirArray) {
+			this.dir = dirArray[i];
+			var pos = stage.getNeighbour(this.Moveable.col, this.Moveable.row, dirArray[i]);
+			//Edge reached
+			if (undefined == pos) {
+				continue;
+			}
+
+			var object = stage.getObject(pos.col, pos.row);
+			if (undefined != object) {
+				//If a spacer is in front, the demon will stop until the spacer disappears, Except demon
+				if (/Spacer.*/.test(object.type)) {
+					//Execute trigger onEat()
+					if (true == object.eat && undefined != object.onEat) {
+						object.onEat(this, stage, pos.col, pos.row);
+					}
+					if (object.type != 'SpacerDemon') {
+						break;
+					}
+				}
+
+				//The object detected is not eatable
+				if (true != object.eat) {
 					continue;
 				}
 
-				var object = stage.getObject(pos.col, pos.row);
-				if (undefined != object) {
-					//If a spacer is in front, the demon will stop until the spacer disappears, Except demon
-					if (this.regexpSpacer.test(object.type)) {
-						//Execute trigger onEat()
-						if (true == object.eat && undefined != object.onEat) {
-							object.onEat(this, stage, pos.col, pos.row);
-						}
-						if (object.type != 'SpacerDemon') {
-							break;
-						}
-					}
-
-					//The object detected is not eatable
-					if (true != object.eat) {
-						continue;
-					}
-
-					//Execute trigger onEat()
-					if (undefined != object.onEat) {
-						object.onEat(this, stage, pos.col, pos.row);
-					}
-					//Destroy the object!!!
-					stage.destroyObject(pos.col, pos.row);
+				//Execute trigger onEat()
+				if (undefined != object.onEat) {
+					object.onEat(this, stage, pos.col, pos.row);
 				}
-				if (this.move(dirArray[i])) {
-					this.Moveable.step--;
-					break;
-				}
+				//Destroy the object!!!
+				stage.destroyObject(pos.col, pos.row);
+			}
+			if (this.move(dirArray[i])) {
+				this.Moveable.step--;
+				break;
 			}
 		}
 	}

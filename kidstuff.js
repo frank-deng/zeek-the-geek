@@ -585,8 +585,8 @@ levelData = [
 		stage.setObject(10, 1, new Flower(false));
 		stage.setObject(12, 1, new Flower(false));
 		stage.setObject(13, 1, new Wall(0));
-		stage.demon.push(new Demon(stage, 14, 1, DIR_WEST));
-		stage.demon.push(new Demon(stage, 15, 1, DIR_WEST));
+		stage.demon.push(new Demon(stage, 14, 1, DIR_EAST));
+		stage.demon.push(new Demon(stage, 15, 1, DIR_EAST));
 		stage.setObject(16, 1, new Wall(0));
 
 		//Row 2
@@ -598,8 +598,8 @@ levelData = [
 		stage.setObject(9, 2, new Wall(0));
 		stage.setObject(11, 2, new Wall(0));
 		stage.setObject(13, 2, new Wall(0));
-		stage.demon.push(new Demon(stage, 14, 2, DIR_WEST));
-		stage.demon.push(new Demon(stage, 15, 2, DIR_WEST));
+		stage.demon.push(new Demon(stage, 14, 2, DIR_EAST));
+		stage.demon.push(new Demon(stage, 15, 2, DIR_EAST));
 		stage.setObject(16, 2, new Wall(0));
 
 		//Row 3
@@ -615,8 +615,8 @@ levelData = [
 		stage.setObject(11, 3, new Wall(0));
 		stage.setObject(12, 3, new Flower(false));
 		stage.setObject(13, 3, new Wall(0));
-		stage.demon.push(new Demon(stage, 14, 3, DIR_WEST));
-		stage.demon.push(new Demon(stage, 15, 3, DIR_WEST));
+		stage.demon.push(new Demon(stage, 14, 3, DIR_EAST));
+		stage.demon.push(new Demon(stage, 15, 3, DIR_EAST));
 		stage.setObject(16, 3, new Wall(0));
 
 		//Row 4
@@ -634,8 +634,8 @@ levelData = [
 		stage.setObject(11, 4, new Wall(0));
 		stage.setObject(12, 4, new Bomb());
 		stage.setObject(13, 4, new Wall(0));
-		stage.demon.push(new Demon(stage, 14, 4, DIR_WEST));
-		stage.demon.push(new Demon(stage, 15, 4, DIR_WEST));
+		stage.demon.push(new Demon(stage, 14, 4, DIR_EAST));
+		stage.demon.push(new Demon(stage, 15, 4, DIR_EAST));
 		stage.setObject(16, 4, new Wall(0));
 
 		//Row 5
@@ -648,9 +648,9 @@ levelData = [
 		stage.setObject(8, 5, new Flower(false));
 		stage.setObject(10, 5, new Wall(0));
 		stage.setObject(11, 5, new Apple());
-		stage.setObject(13, 5, new Door());
-		stage.demon.push(new Demon(stage, 14, 5, DIR_WEST));
-		stage.demon.push(new Demon(stage, 15, 5, DIR_WEST));
+		stage.setObject(13, 5, new Mushroom(true));
+		stage.demon.push(new Demon(stage, 14, 5, DIR_EAST));
+		stage.demon.push(new Demon(stage, 15, 5, DIR_EAST));
 		stage.setObject(16, 5, new Wall(0));
 
 		//Row 6
@@ -662,9 +662,9 @@ levelData = [
 		stage.setObject(8, 6, new Wall(0));
 		stage.setObject(9, 6, new Flower(false));
 		stage.setObject(11, 6, new Flower(false));
-		stage.setObject(13, 6, new Door());
-		stage.demon.push(new Demon(stage, 14, 6, DIR_WEST));
-		stage.demon.push(new Demon(stage, 15, 6, DIR_WEST));
+		stage.setObject(13, 6, new Mushroom(true));
+		stage.demon.push(new Demon(stage, 14, 6, DIR_EAST));
+		stage.demon.push(new Demon(stage, 15, 6, DIR_EAST));
 		stage.setObject(16, 6, new Wall(0));
 
 		//Row 7
@@ -679,9 +679,9 @@ levelData = [
 		stage.setObject(9, 7, new Wall(0));
 		stage.setObject(10, 7, new Wall(0));
 		stage.setObject(11, 7, new PFlower(false));
-		stage.setObject(13, 7, new Door());
-		stage.demon.push(new Demon(stage, 14, 7, DIR_WEST));
-		stage.demon.push(new Demon(stage, 15, 7, DIR_WEST));
+		stage.setObject(13, 7, new PFlower(true));
+		stage.demon.push(new Demon(stage, 14, 7, DIR_EAST));
+		stage.demon.push(new Demon(stage, 15, 7, DIR_EAST));
 		stage.setObject(16, 7, new Wall(0));
 
 		//Row 8
@@ -695,9 +695,9 @@ levelData = [
 		stage.setObject(9, 8, new Apple());
 		stage.setObject(10, 8, new Wall(0));
 		stage.setObject(12, 8, new PFlower(true));
-		stage.setObject(13, 8, new Door());
-		stage.demon.push(new Demon(stage, 14, 8, DIR_WEST));
-		stage.demon.push(new Demon(stage, 15, 8, DIR_WEST));
+		stage.setObject(13, 8, new Flower(true));
+		stage.demon.push(new Demon(stage, 14, 8, DIR_EAST));
+		stage.demon.push(new Demon(stage, 15, 8, DIR_EAST));
 		stage.setObject(16, 8, new Wall(0));
 
 		//Row 9
@@ -711,9 +711,9 @@ levelData = [
 		stage.setObject(9, 9, new Wall(0));
 		stage.setObject(10, 9, new Wall(0));
 		stage.setObject(11, 9, new Mushroom(true));
-		stage.setObject(13, 9, new Door());
-		stage.demon.push(new Demon(stage, 14, 9, DIR_WEST));
-		stage.demon.push(new Demon(stage, 15, 9, DIR_WEST));
+		stage.setObject(13, 9, new PFlower(false));
+		stage.demon.push(new Demon(stage, 14, 9, DIR_EAST));
+		stage.demon.push(new Demon(stage, 15, 9, DIR_EAST));
 		stage.setObject(16, 9, new Wall(0));
 
 		//Row 10
@@ -727,9 +727,9 @@ levelData = [
 		stage.setObject(10, 10, new Wall(0));
 		stage.setObject(11, 10, new PFlower(true));
 		stage.setObject(12, 10, new Mushroom(true));
-		stage.setObject(13, 10, new Door());
-		stage.demon.push(new Demon(stage, 14, 10, DIR_WEST));
-		stage.demon.push(new Demon(stage, 15, 10, DIR_WEST));
+		stage.setObject(13, 10, new AppleRotten());
+		stage.demon.push(new Demon(stage, 14, 10, DIR_EAST));
+		stage.demon.push(new Demon(stage, 15, 10, DIR_EAST));
 		stage.setObject(16, 10, new Wall(0));
 
 		//Row 11
