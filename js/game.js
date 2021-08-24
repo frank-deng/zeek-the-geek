@@ -1,5 +1,3 @@
-'use strict'
-
 import Level from './level';
 import Stage from './stage';
 import Demon from './demon';
