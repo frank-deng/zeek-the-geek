@@ -24,9 +24,11 @@ function Game(packName, levelData) {
 	//Disable sound by default
 	document.querySelector('input#enableSound').checked = false;
 	document.querySelector('input#enableSound').addEventListener('change',(e)=>{
-		let settingData=localStorage.getItem('gameSetting') || {};
+		let settingData=localStorage.getItem('gameSetting');
+		settingData = settingData ? JSON.parse(settingData) : {};
 		settingData.soundOn=e.target.checked;
 		localStorage.setItem('gameSetting',JSON.stringify(settingData));
+		e.target.blur();
 	});
 
 	//Read sound on/off from localStorage

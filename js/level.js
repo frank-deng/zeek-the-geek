@@ -52,6 +52,9 @@ class Level{
 		this._onFinish=func;
 	}
 	callOnFinish(score){
+		document.removeEventListener('keydown',this.keydownHandler);
+		document.removeEventListener('keyup',this.keyupHandler);
+		document.querySelector('canvas#stage').removeEventListener('mousedown',this.mousedownHandler);
 		if(this._onFinish){
 			this._onFinish(score);
 		}
@@ -98,9 +101,6 @@ class Level{
 			if (this.stage.finished) {
 				this.score = this.stage.score;
 				this.stage.reset();
-				document.removeEventListener('keydown',this.keydownHandler);
-				document.removeEventListener('keyup',this.keyupHandler);
-				document.querySelector('canvas#stage').removeEventListener('mousedown',this.mousedownHandler);
 				this.callOnFinish(this.score);
 			} else {
 				window.setTimeout(this.timeoutFunc, this.speed);
@@ -111,7 +111,6 @@ class Level{
 		}
 	}
 	keydownHandler=(event)=>{
-		document.querySelector('input#enableSound').blur();
 		if (!this.paused) {
 			let nextDir=this.nextDir, dirKeyPressed=this.dirKeyPressed;
 			switch (event.keyCode) {
