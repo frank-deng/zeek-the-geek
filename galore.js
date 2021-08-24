@@ -11037,4 +11037,5 @@ levelData = [
 
 	}),
 ];
+document.title='Galore';
 new Game('galore', levelData);

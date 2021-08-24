@@ -5593,4 +5593,5 @@ levelData = [
 	}),
 ];
 
+document.title='Zeek 2';
 new Game('zeek2', levelData);

@@ -5321,4 +5321,6 @@ levelData = [
 
 	}),
 ];
+
+document.title='Challenge';
 new Game('challenge', levelData);

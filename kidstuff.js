@@ -5667,4 +5667,5 @@ levelData = [
 	}),
 ];
 
+document.title='Kid\'s Stuff';
 new Game('kidstuff', levelData);

@@ -974,4 +974,5 @@ levelData = [
 	}),
 ];
 
+document.title='Fun Pack 1';
 new Game('funpack1', levelData);

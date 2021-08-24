@@ -214,4 +214,5 @@ levelData = [
 	}),
 ];
 
+document.title='Valentine 1';
 new Game('valentine1', levelData);

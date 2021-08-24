@@ -61,22 +61,9 @@ if(!packMatch){
 	console.error('Failed to load puzzle pack');
 }
 let pack=packMatch[1];
-
-fetch('./puzzlePacks.json').then(async(resp)=>{
-	if(!resp.ok){
-		console.error('Failed to load puzzle packs');
-		return;
-	}
-	let puzzlePacks = await resp.json();
-	if(!puzzlePacks[pack]){
-		console.error('Failed to load puzzle pack');
-		return;
-	}
-	document.title=puzzlePacks[pack];
-	let scriptTag=document.createElement('script');
-	scriptTag.setAttribute('src',`${pack}.js`);
-	document.body.appendChild(scriptTag);
-});
+let scriptTag=document.createElement('script');
+scriptTag.setAttribute('src',`${pack}.js`);
+document.body.appendChild(scriptTag);
 		</script>
 	</body>
 </html>

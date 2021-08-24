@@ -5429,4 +5429,5 @@ levelData = [
 	}),
 ];
 
+document.title='Nice \'n Easy';
 new Game('niceeasy', levelData);
