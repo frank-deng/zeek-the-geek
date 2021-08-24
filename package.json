@@ -1,5 +1,9 @@
 {
+  "scripts": {
+    "start": "rollup -c rollup.config.js"
+  },
   "devDependencies": {
-    "rollup": "^2.56.2"
+    "rollup": "^2.56.2",
+    "rollup-plugin-terser": "^7.0.2"
   }
 }

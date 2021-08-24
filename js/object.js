@@ -1,4 +1,7 @@
-class Apple{
+import { playAudio } from "./misc";
+import {image,drawImage} from './image';
+
+export class Apple{
 	type='Apple';
 	push=true;
 	eat=true;
@@ -12,7 +15,7 @@ class Apple{
 		drawImage(image[this.type], ctx, col, row);
 	}
 }
-class AppleRotten{
+export class AppleRotten{
 	type='AppleRotten';
 	push=true;
 	eat=true;
@@ -27,14 +30,14 @@ class AppleRotten{
 		drawImage(image[this.type][this.img_index], ctx, col, row);
 	}
 }
-class Ball{
+export class Ball{
 	type='Ball';
 	push = true;
 	onDraw(ctx, col, row){
 		drawImage(image[this.type], ctx, col, row);
 	}
 }
-class Bomb{
+export class Bomb{
 	type = 'Bomb';
 	push = true;
 	timeout = -1;
@@ -96,7 +99,7 @@ class Bomb{
 		}
 	}
 }
-class Crystal{
+export class Crystal{
 	type = 'Crystal';
 	push = true;
 	triggered = -1;
@@ -138,7 +141,7 @@ class Crystal{
 		}
 	}
 }
-class Door{
+export class Door{
 	type = 'Door';
 	destroy = true;
 	onPick(player) {
@@ -162,7 +165,7 @@ class Door{
 		drawImage(image[this.type], ctx, col, row);
 	}
 }
-class Egg{
+export class Egg{
 	type = 'Egg';
 	pick = true;
 	eat = true;
@@ -184,7 +187,7 @@ class Egg{
 		return [{col:col, row: row}];
 	}
 }
-class Flower{
+export class Flower{
 	type = 'Flower';
 	pick = true;
 	eat = true;
@@ -213,7 +216,7 @@ class Flower{
 		return [];
 	}
 }
-class Key{
+export class Key{
 	type = 'Key';
 	pick = true;
 	destroy = true;
@@ -238,7 +241,7 @@ class Key{
 		drawImage(image[this.type], ctx, col, row);
 	}
 }
-class LaserGun{
+export class LaserGun{
 	type = 'LaserGun';
 	destroy = true;
 	detectedPos = new Array();
@@ -340,7 +343,7 @@ class LaserGun{
 		return this.blackAreaDetected;
 	}
 }
-class Mushroom{
+export class Mushroom{
 	type = 'Mushroom';
 	pick = true;
 	eat = true;
@@ -370,7 +373,7 @@ class Mushroom{
 		return [];
 	}
 }
-class PFlower{
+export class PFlower{
 	type = 'PFlower';
 	eat = true;
 	destroy = true;
@@ -567,7 +570,7 @@ class PFlower{
 		return result;
 	}
 }
-class Pill {
+export class Pill {
 	type = 'Pill';
 	pick = true;
 	eat = true;
@@ -579,7 +582,7 @@ class Pill {
 		drawImage(image[this.type], ctx, col, row);
 	}
 }
-class SpacerDemon{
+export class SpacerDemon{
 	type = 'SpacerDemon';
 	destroy = true;
 	leaving = false;
@@ -611,7 +614,7 @@ class SpacerDemon{
 	}
 	*/
 }
-class SpacerLaser{
+export class SpacerLaser{
 	type = 'SpacerLaser';
 	timeout = 3;
 	constructor(dir){
@@ -637,13 +640,13 @@ class SpacerLaser{
 		}
 	}
 }
-class SpacerObject{
+export class SpacerObject{
 	type = 'SpacerObject';
 	constructor(src){
 		this.src = src;
 	}
 }
-class SpacerPFlower{
+export class SpacerPFlower{
 	type = 'SpacerPFlower';
 	timeout = 24;
 	constructor(dir, type){
@@ -670,7 +673,7 @@ class SpacerPFlower{
 		drawImage(img, ctx, col, row);
 	}
 }
-class SpacerPlayer{
+export class SpacerPlayer{
 	type = 'SpacerPlayer';
 	eat = true;
 	destroy = true;
@@ -702,7 +705,7 @@ class SpacerPlayer{
 		}
 	}
 }
-class SpacerPlayerPoisoned{
+export class SpacerPlayerPoisoned{
 	type = 'SpacerPlayerPoisoned';
 	timeout = 30;
 	constructor(player){
@@ -729,7 +732,7 @@ class SpacerPlayerPoisoned{
 		}
 	}
 }
-class Treasure{
+export class Treasure{
 	type = 'Treasure';
 	pick = true;
 	destroy = true;
@@ -740,7 +743,7 @@ class Treasure{
 		drawImage(image[this.type], ctx, col, row);
 	}
 }
-class Wall{
+export class Wall{
 	type = 'Wall';
 	constructor(style){
 		this.style=style;
@@ -749,4 +752,3 @@ class Wall{
 		drawImage(image[this.type][this.style], ctx, col, row);
 	}
 }
-

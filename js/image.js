@@ -1,5 +1,6 @@
-IMAGE_W = IMAGE_H = 36;
-function drawImage(__image, ctx, col, row) {
+export const IMAGE_W = 36;
+export const IMAGE_H = 36;
+export function drawImage(__image, ctx, col, row) {
 	ctx.drawImage(__image.img,
 		(__image.x * IMAGE_W), (__image.y * IMAGE_H), IMAGE_W, IMAGE_H,
 		Math.floor(col * IMAGE_W), Math.floor(row * IMAGE_H), IMAGE_W, IMAGE_H);
@@ -16,6 +17,7 @@ imageObj[3] = new Image();
 imageObj[3].src = 'image/4.gif';
 
 image = new Array();
+export var image;
 image[undefined] = {img:imageObj[0], x:1, y:11};
 image['Apple'] = {img:imageObj[1], x:1, y:0};
 image['AppleRotten'] = [

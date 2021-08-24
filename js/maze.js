@@ -104,7 +104,7 @@ class Maze{
 		return true;
 	}
 }
-function mazeSolver(stage, player, destCol, destRow) {
+export default function(stage, player, destCol, destRow) {
 	var result = new Array();
 	var maze = new Maze(stage.cols, stage.rows, function(maze){
 		var col, row;
@@ -121,8 +121,6 @@ function mazeSolver(stage, player, destCol, destRow) {
 					for (var i = 0; i < posList.length; i++) {
 						maze.set(posList[i].col, posList[i].row, maze.WALL);
 					}
-					posList.splice(0, posList.length);
-					delete posList;
 				} else if (true != object.pick) { //Non-pickable objects
 					maze.set(col, row, maze.WALL);
 				}
@@ -144,9 +142,6 @@ function mazeSolver(stage, player, destCol, destRow) {
 			result.push({col:resultRaw[i].x, row:resultRaw[i].y});
 		}
 	}
-	maze.footPrint.splice(0, maze.footPrint.length);
-	delete maze.footPrint;
-	delete maze;
 	return result;
 }
 

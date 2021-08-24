@@ -1,3 +1,72 @@
+import Level from './level';
+import Stage from './stage';
+import Demon from './demon';
+import {
+	leftFirst,
+	rightFirst,
+	randomSelection,
+	randomTurn
+} from './demon';
+import Player from './player';
+import {
+	Apple,
+	AppleRotten,
+	Ball,
+	Bomb,
+	Crystal,
+	Door,
+	Egg,
+	Flower,
+	Key,
+	LaserGun,
+	Mushroom,
+	PFlower,
+	Pill,
+	Treasure,
+	Wall
+} from './object';
+import {
+	DIR_NORTH,
+	DIR_EAST,
+	DIR_WEST,
+	DIR_SOUTH,
+	DIR_LEFT,
+	DIR_RIGHT,
+	DIR_BACK,
+} from './misc';
+
+Object.assign(window,{
+	Stage,
+	Player,
+	Demon,
+	Apple,
+	AppleRotten,
+	Ball,
+	Bomb,
+	Crystal,
+	Door,
+	Egg,
+	Flower,
+	Key,
+	LaserGun,
+	Mushroom,
+	PFlower,
+	Pill,
+	Treasure,
+	Wall,
+	DIR_NORTH,
+	DIR_EAST,
+	DIR_WEST,
+	DIR_SOUTH,
+	DIR_LEFT,
+	DIR_RIGHT,
+	DIR_BACK,
+	leftFirst,
+	rightFirst,
+	randomSelection,
+	randomTurn,
+});
+
 function puzzlePackFinished(packName, totalScore){
 	document.querySelector('canvas#stage').style.display='none';
 	document.querySelector('div#footer').style.display='none';
@@ -16,7 +85,7 @@ function puzzlePackFinished(packName, totalScore){
 		console.error(e);
 	}
 }
-function Game(packName, levelData) {
+export default function(packName, levelData) {
 	var ctx = document.querySelector('canvas#stage').getContext('2d');
 	var totalScore = 0;
 	var levelNum = 0;

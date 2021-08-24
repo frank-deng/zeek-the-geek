@@ -1,13 +1,15 @@
-DIR_NORTH='N';
-DIR_EAST='E';
-DIR_WEST='W';
-DIR_SOUTH='S';
+import {image,drawImage} from './image';
 
-DIR_LEFT='L';
-DIR_RIGHT='R';
-DIR_BACK='B';
+export const DIR_NORTH='N';
+export const DIR_EAST='E';
+export const DIR_WEST='W';
+export const DIR_SOUTH='S';
 
-function switchDir(dir, sw) {
+export const DIR_LEFT='L';
+export const DIR_RIGHT='R';
+export const DIR_BACK='B';
+
+export function switchDir(dir, sw) {
 	var expr;
 	switch (dir) {
 		case DIR_NORTH:
@@ -31,7 +33,7 @@ function switchDir(dir, sw) {
 	}
 	return expr[sw];
 }
-function getDir(col0, row0, col1, row1){
+export function getDir(col0, row0, col1, row1){
 	if (row0 == row1 && col0 == col1) {
 		return undefined;
 	}
@@ -43,7 +45,7 @@ function getDir(col0, row0, col1, row1){
 		return undefined;
 	}
 }
-class Moveable{
+export class Moveable{
 	stepMax = 8;
 	colPrev = undefined;
 	rowPrev = undefined;
@@ -117,7 +119,7 @@ class Moveable{
 }
 
 //Handle sound via WebAudioAPI
-const audioContext=new window.AudioContext();
+const audioContext=new AudioContext();
 async function loadSound(fileList){
 	let taskList=[], result={};
 	for(let fileName of fileList){
@@ -155,7 +157,7 @@ let audioTable={
 loadSound(Object.keys(audioTable)).then((data)=>{
 	audioTable=data;
 });
-function playAudio(audioFile) {
+export function playAudio(audioFile) {
 	if(!document.querySelector('input#enableSound').checked || !audioTable[audioFile]){
 		return;
 	}

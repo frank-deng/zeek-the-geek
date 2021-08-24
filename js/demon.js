@@ -1,4 +1,8 @@
-function leftFirst(demon) {
+import {image,drawImage} from './image';
+import {switchDir,Moveable} from './misc';
+import { SpacerDemon } from './object';
+
+export function leftFirst(demon) {
 	var dir = demon.Moveable.dir;
 	return [
 		dir,
@@ -7,7 +11,7 @@ function leftFirst(demon) {
 		switchDir(dir, DIR_BACK),
 	];
 }
-function rightFirst(demon) {
+export function rightFirst(demon) {
 	var dir = demon.Moveable.dir;
 	return [
 		dir,
@@ -16,7 +20,7 @@ function rightFirst(demon) {
 		switchDir(dir, DIR_BACK),
 	];
 }
-function randomSelection(demon) {
+export function randomSelection(demon) {
 	var dir = demon.Moveable.dir;
 	if (Math.random() >= 0.5) {
 		return [
@@ -34,7 +38,7 @@ function randomSelection(demon) {
 		];
 	}
 }
-function randomTurn(demon) {
+export function randomTurn(demon) {
 	var result = [DIR_NORTH, DIR_EAST, DIR_WEST, DIR_SOUTH];
 	for (var i = 1; i < result.length; i++) {
 		var irand = Math.floor(Math.random() * (i + 1));
@@ -44,7 +48,7 @@ function randomTurn(demon) {
 	}
 	return result;
 }
-class Demon{
+export default class Demon{
 	type = 'Demon';
 	turning = leftFirst;
 	constructor(stage, col, row, initDir){

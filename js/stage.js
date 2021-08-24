@@ -1,4 +1,5 @@
-class Stage{
+import {image,drawImage} from './image';
+export default class Stage{
 	name = '';
 	cols = 17;
 	rows = 12;

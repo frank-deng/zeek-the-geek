@@ -1,4 +1,8 @@
-class Player{
+import {image,drawImage} from './image';
+import { playAudio,Moveable } from "./misc";
+import { SpacerPlayer, SpacerObject, SpacerPlayerPoisoned } from "./object";
+
+export default class Player{
 	type = 'Player';
 	finished = false;
 	poisoned = false;

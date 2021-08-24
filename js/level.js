@@ -1,3 +1,5 @@
+import mazeSolver from './maze';
+
 function getDirFromRoute(player, playerRoute) {
 	var nextDir = undefined;
 
@@ -22,16 +24,14 @@ function getDirFromRoute(player, playerRoute) {
 				for (var i = len - 1; i >= 0; i--) {
 					playerRoute.splice(0, 0, solved[i]);
 				}
-				solved.splice(0, solved.length);
-				delete solved;
-
+				solved=[];
 				nextDir = getDir(player.Moveable.col, player.Moveable.row, playerRoute[0].col, playerRoute[0].row);
 			}
 		}
 	}
 	return nextDir;
 }
-class Level{
+export default class Level{
 	score = 0;
 	speed = 100;
 	paused = false;
@@ -46,7 +46,7 @@ class Level{
 		document.addEventListener('keyup',this.keyupHandler);
 		document.querySelector('canvas#stage').addEventListener('mousedown',this.mousedownHandler);
 		//Play this level
-		window.setTimeout(this.timeoutFunc, this.speed);
+		setTimeout(this.timeoutFunc, this.speed);
 	}
 	onFinish(func){
 		this._onFinish=func;
@@ -103,11 +103,11 @@ class Level{
 				this.stage.reset();
 				this.callOnFinish(this.score);
 			} else {
-				window.setTimeout(this.timeoutFunc, this.speed);
+				setTimeout(this.timeoutFunc, this.speed);
 			}
 		}catch(e){
 			console.error(e);
-			window.setTimeout(this.timeoutFunc, this.speed);
+			setTimeout(this.timeoutFunc, this.speed);
 		}
 	}
 	keydownHandler=(event)=>{
