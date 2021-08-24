@@ -8215,11 +8215,6 @@ levelData = [
 		stage.setObject(15, 11, new Wall(1));
 		stage.setObject(16, 11, new Wall(1));
 
-		/* Custom script */
-		stage.getObject(2, 1).eat = undefined;
-		stage.getObject(4, 1).onDestroy = function(player) {
-			stage.getObject(2, 1).eat = true;
-		}
 	}),
 	/* Level 46 */
 	new Stage(function(stage){
@@ -11038,4 +11033,4 @@ levelData = [
 	}),
 ];
 document.title='Galore';
-new Game('galore', levelData);
+new Game('galore',levelData);
