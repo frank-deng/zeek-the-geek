@@ -13,6 +13,7 @@
       }
     },
     "rules": {
-        "strict": 1
+        "strict": 1,
+        "one-var":1
     }
 }
