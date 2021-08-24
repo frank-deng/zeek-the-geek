@@ -4966,7 +4966,8 @@ levelData = [
 		stage.setObject(4, 0, new Wall(3));
 		stage.setObject(5, 0, new Wall(3));
 		stage.setObject(6, 0, new Wall(3));
-		stage.demon.push(new Demon(stage, 7, 0, DIR_SOUTH));
+		stage.setObject(7, 0, new Apple());
+		stage.demon.push(new Demon(stage, 8, 0, DIR_EAST));
 		stage.setObject(9, 0, new Wall(3));
 		stage.setObject(10, 0, new Wall(3));
 		stage.setObject(11, 0, new Wall(3));
@@ -4982,7 +4983,7 @@ levelData = [
 		stage.setObject(2, 1, new Flower(false));
 		stage.setObject(5, 1, new Flower(false));
 		stage.setObject(6, 1, new Wall(3));
-		stage.setObject(7, 1, new Door());
+		stage.setObject(7, 1, new PFlower(false));
 		stage.setObject(8, 1, new Wall(3));
 		stage.setObject(9, 1, new Wall(3));
 		stage.setObject(10, 1, new PFlower(false));
@@ -5093,7 +5094,7 @@ levelData = [
 		stage.setObject(4, 8, new Flower(true));
 		stage.setObject(6, 8, new Flower(true));
 		stage.setObject(7, 8, new Wall(3));
-		stage.setObject(8, 8, new Door());
+		stage.setObject(8, 8, new PFlower(false));
 		stage.setObject(9, 8, new Wall(3));
 		stage.setObject(10, 8, new Flower(true));
 		stage.setObject(11, 8, new Bomb());
@@ -5109,6 +5110,7 @@ levelData = [
 		stage.setObject(4, 9, new Apple());
 		stage.setObject(5, 9, new Crystal());
 		stage.setObject(7, 9, new Wall(3));
+		stage.setObject(8, 9, new Apple());
 		stage.setObject(9, 9, new Wall(3));
 		stage.setObject(10, 9, new Flower(true));
 		stage.setObject(12, 9, new Wall(3));
@@ -5123,7 +5125,7 @@ levelData = [
 		stage.setObject(4, 10, new Flower(true));
 		stage.setObject(6, 10, new PFlower(true));
 		stage.setObject(7, 10, new Wall(3));
-		stage.demon.push(new Demon(stage, 8, 10, DIR_NORTH));
+		stage.demon.push(new Demon(stage, 8, 10, DIR_SOUTH));
 		stage.setObject(9, 10, new Wall(3));
 		stage.setObject(11, 10, new Crystal());
 		stage.setObject(12, 10, new Flower(false));
@@ -5151,13 +5153,6 @@ levelData = [
 		stage.setObject(15, 11, new Wall(3));
 		stage.setObject(16, 11, new Wall(3));
 
-		/* Custom script */
-		stage.getObject(7, 2).onPick = function(player) {
-			player.stage.destroyObject(7, 1);
-		}
-		stage.getObject(8, 7).onPick = function(player) {
-			player.stage.destroyObject(8, 8);
-		}
 	}),
 	/* Level 30 */
 	new Stage(function(stage){
@@ -5321,6 +5316,5 @@ levelData = [
 
 	}),
 ];
-
 document.title='Challenge';
-new Game('challenge', levelData);
+new Game('challenge',levelData);
