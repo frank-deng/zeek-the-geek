@@ -25,10 +25,10 @@
 	<object type="Wall8" col="8" row="1"/>
 	<object type="Flower" col="9" row="1"/>
 	<object type="Flower" col="11" row="1"/>
-	<object type="Crystal" col="12" row="1"/>
+	<object type="Flower" col="12" row="1"/>
 	<object type="Wall8" col="13" row="1"/>
-	<object type="DemonEast" col="14" row="1"/>
-	<object type="DemonSouth" col="15" row="1"/>
+	<object type="Wall10" col="14" row="1"/>
+	<object type="Wall10" col="15" row="1"/>
 	<object type="Wall8" col="16" row="1"/>
 	<object type="Wall8" col="0" row="2"/>
 	<object type="MushroomPoisonous" col="1" row="2"/>
@@ -42,8 +42,8 @@
 	<object type="Wall8" col="10" row="2"/>
 	<object type="Wall8" col="11" row="2"/>
 	<object type="Wall8" col="13" row="2"/>
-	<object type="DemonEast" col="14" row="2"/>
-	<object type="DemonSouth" col="15" row="2"/>
+	<object type="Wall10" col="14" row="2"/>
+	<object type="Wall10" col="15" row="2"/>
 	<object type="Wall8" col="16" row="2"/>
 	<object type="Wall8" col="0" row="3"/>
 	<object type="PFlowerClose" col="1" row="3"/>
@@ -55,14 +55,13 @@
 	<object type="Flower" col="9" row="3"/>
 	<object type="Wall8" col="10" row="3"/>
 	<object type="Wall8" col="11" row="3"/>
-	<object type="Crystal" col="12" row="3"/>
+	<object type="Flower" col="12" row="3"/>
 	<object type="Wall8" col="13" row="3"/>
 	<object type="Wall8" col="14" row="3"/>
-	<object type="DemonSouth" col="15" row="3"/>
+	<object type="Wall8" col="15" row="3"/>
 	<object type="Wall8" col="16" row="3"/>
 	<object type="Wall8" col="0" row="4"/>
 	<object type="Wall8" col="1" row="4"/>
-	<object type="Player" col="2" row="4"/>
 	<object type="Wall8" col="3" row="4"/>
 	<object type="Wall8" col="4" row="4"/>
 	<object type="Wall8" col="5" row="4"/>
@@ -73,23 +72,19 @@
 	<object type="Wall8" col="10" row="4"/>
 	<object type="Key" col="11" row="4"/>
 	<object type="Flower" col="13" row="4"/>
-	<object type="Wall8" col="14" row="4"/>
-	<object type="DemonSouth" col="15" row="4"/>
+	<object type="Wall8" col="15" row="4"/>
 	<object type="Wall8" col="16" row="4"/>
 	<object type="Wall8" col="0" row="5"/>
-	<object type="Flower" col="2" row="5"/>
 	<object type="FlowerPoisonous" col="6" row="5"/>
 	<object type="Bomb" col="7" row="5"/>
 	<object type="LaserGun" col="9" row="5"/>
 	<object type="Wall8" col="10" row="5"/>
 	<object type="Wall8" col="11" row="5"/>
 	<object type="Wall8" col="12" row="5"/>
-	<object type="Wall8" col="14" row="5"/>
-	<object type="DemonSouth" col="15" row="5"/>
+	<object type="Wall8" col="13" row="5"/>
+	<object type="Wall8" col="15" row="5"/>
 	<object type="Wall8" col="16" row="5"/>
 	<object type="Wall8" col="0" row="6"/>
-	<object type="Flower" col="1" row="6"/>
-	<object type="Flower" col="3" row="6"/>
 	<object type="FlowerPoisonous" col="4" row="6"/>
 	<object type="FlowerPoisonous" col="5" row="6"/>
 	<object type="FlowerPoisonous" col="6" row="6"/>
@@ -97,10 +92,8 @@
 	<object type="Wall8" col="8" row="6"/>
 	<object type="Wall8" col="9" row="6"/>
 	<object type="Wall8" col="10" row="6"/>
-	<object type="FlowerPoisonous" col="11" row="6"/>
 	<object type="Egg" col="12" row="6"/>
-	<object type="Treasure" col="13" row="6"/>
-	<object type="DemonEast" col="14" row="6"/>
+	<object type="Treasure" col="14" row="6"/>
 	<object type="DemonSouth" col="15" row="6"/>
 	<object type="Wall8" col="16" row="6"/>
 	<object type="Wall8" col="0" row="7"/>
@@ -109,52 +102,46 @@
 	<object type="Wall8" col="6" row="7"/>
 	<object type="Wall8" col="7" row="7"/>
 	<object type="Egg" col="8" row="7"/>
-	<object type="Crystal" col="10" row="7"/>
-	<object type="MushroomPoisonous" col="13" row="7"/>
+	<object type="FlowerPoisonous" col="11" row="7"/>
+	<object type="PFlowerOpen" col="13" row="7"/>
 	<object type="DemonEast" col="14" row="7"/>
 	<object type="DemonEast" col="15" row="7"/>
 	<object type="Wall8" col="16" row="7"/>
 	<object type="Wall8" col="0" row="8"/>
 	<object type="Egg" col="1" row="8"/>
-	<object type="PFlowerClose" col="2" row="8"/>
+	<object type="PFlowerOpen" col="2" row="8"/>
 	<object type="Wall8" col="4" row="8"/>
 	<object type="Mushroom" col="5" row="8"/>
 	<object type="Wall8" col="6" row="8"/>
 	<object type="Wall8" col="7" row="8"/>
 	<object type="Wall8" col="8" row="8"/>
-	<object type="Crystal" col="9" row="8"/>
+	<object type="Player" col="9" row="8"/>
 	<object type="Wall8" col="10" row="8"/>
-	<object type="PFlowerClose" col="11" row="8"/>
-	<object type="PFlowerClose" col="12" row="8"/>
-	<object type="Apple" col="13" row="8"/>
+	<object type="Flower" col="11" row="8"/>
+	<object type="Flower" col="12" row="8"/>
+	<object type="Flower" col="13" row="8"/>
 	<object type="DemonEast" col="14" row="8"/>
 	<object type="DemonEast" col="15" row="8"/>
 	<object type="Wall8" col="16" row="8"/>
 	<object type="Wall8" col="0" row="9"/>
 	<object type="Wall8" col="1" row="9"/>
 	<object type="Wall8" col="2" row="9"/>
-	<object type="Flower" col="3" row="9"/>
 	<object type="Wall8" col="4" row="9"/>
 	<object type="Wall8" col="5" row="9"/>
 	<object type="Wall8" col="6" row="9"/>
-	<object type="Flower" col="8" row="9"/>
 	<object type="Wall8" col="10" row="9"/>
-	<object type="PFlowerOpen" col="11" row="9"/>
-	<object type="PFlowerOpen" col="12" row="9"/>
-	<object type="MushroomPoisonous" col="13" row="9"/>
+	<object type="Flower" col="11" row="9"/>
+	<object type="Apple" col="12" row="9"/>
+	<object type="Flower" col="13" row="9"/>
 	<object type="DemonEast" col="14" row="9"/>
 	<object type="DemonEast" col="15" row="9"/>
 	<object type="Wall8" col="16" row="9"/>
 	<object type="Wall8" col="0" row="10"/>
-	<object type="Key" col="1" row="10"/>
-	<object type="Door" col="5" row="10"/>
-	<object type="Flower" col="6" row="10"/>
 	<object type="Wall8" col="8" row="10"/>
 	<object type="Key" col="9" row="10"/>
 	<object type="Wall8" col="10" row="10"/>
-	<object type="PFlowerOpen" col="11" row="10"/>
-	<object type="PFlowerOpen" col="12" row="10"/>
-	<object type="MushroomPoisonous" col="13" row="10"/>
+	<object type="Flower" col="12" row="10"/>
+	<object type="PFlowerClose" col="13" row="10"/>
 	<object type="DemonEast" col="14" row="10"/>
 	<object type="DemonEast" col="15" row="10"/>
 	<object type="Wall8" col="16" row="10"/>
