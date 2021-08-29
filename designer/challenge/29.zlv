@@ -7,8 +7,8 @@
 	<object type="Wall3" col="4" row="0"/>
 	<object type="Wall3" col="5" row="0"/>
 	<object type="Wall3" col="6" row="0"/>
-	<object type="Apple" col="7" row="0"/>
-	<object type="DemonEast" col="8" row="0"/>
+	<object type="Wall3" col="7" row="0"/>
+	<object type="Wall3" col="8" row="0"/>
 	<object type="Wall3" col="9" row="0"/>
 	<object type="Wall3" col="10" row="0"/>
 	<object type="Wall3" col="11" row="0"/>
@@ -22,7 +22,7 @@
 	<object type="Flower" col="2" row="1"/>
 	<object type="Flower" col="5" row="1"/>
 	<object type="Wall3" col="6" row="1"/>
-	<object type="PFlowerClose" col="7" row="1"/>
+	<object type="DemonEast" col="7" row="1"/>
 	<object type="Wall3" col="8" row="1"/>
 	<object type="Wall3" col="9" row="1"/>
 	<object type="PFlowerClose" col="10" row="1"/>
@@ -38,8 +38,7 @@
 	<object type="Apple" col="4" row="2"/>
 	<object type="Player" col="5" row="2"/>
 	<object type="Flower" col="6" row="2"/>
-	<object type="Flower" col="7" row="2"/>
-	<object type="Bomb" col="8" row="2"/>
+	<object type="Bomb" col="7" row="2"/>
 	<object type="Apple" col="10" row="2"/>
 	<object type="Flower" col="13" row="2"/>
 	<object type="Wall10" col="14" row="2"/>
@@ -104,9 +103,10 @@
 	<object type="FlowerPoisonous" col="2" row="7"/>
 	<object type="FlowerPoisonous" col="4" row="7"/>
 	<object type="FlowerPoisonous" col="5" row="7"/>
-	<object type="Crystal" col="7" row="7"/>
-	<object type="Treasure" col="8" row="7"/>
-	<object type="FlowerPoisonous" col="9" row="7"/>
+	<object type="Wall3" col="7" row="7"/>
+	<object type="Egg" col="8" row="7"/>
+	<object type="Wall3" col="9" row="7"/>
+	<object type="FlowerPoisonous" col="10" row="7"/>
 	<object type="FlowerPoisonous" col="11" row="7"/>
 	<object type="Crystal" col="12" row="7"/>
 	<object type="FlowerPoisonous" col="13" row="7"/>
@@ -118,10 +118,9 @@
 	<object type="Apple" col="3" row="8"/>
 	<object type="FlowerPoisonous" col="4" row="8"/>
 	<object type="FlowerPoisonous" col="6" row="8"/>
-	<object type="Wall3" col="7" row="8"/>
-	<object type="PFlowerClose" col="8" row="8"/>
-	<object type="Wall3" col="9" row="8"/>
-	<object type="FlowerPoisonous" col="10" row="8"/>
+	<object type="Crystal" col="7" row="8"/>
+	<object type="Treasure" col="8" row="8"/>
+	<object type="FlowerPoisonous" col="9" row="8"/>
 	<object type="Bomb" col="11" row="8"/>
 	<object type="PFlowerOpen" col="14" row="8"/>
 	<object type="Treasure" col="15" row="8"/>
@@ -133,7 +132,7 @@
 	<object type="Apple" col="4" row="9"/>
 	<object type="Crystal" col="5" row="9"/>
 	<object type="Wall3" col="7" row="9"/>
-	<object type="Apple" col="8" row="9"/>
+	<object type="DemonEast" col="8" row="9"/>
 	<object type="Wall3" col="9" row="9"/>
 	<object type="FlowerPoisonous" col="10" row="9"/>
 	<object type="Wall3" col="12" row="9"/>
@@ -146,7 +145,7 @@
 	<object type="FlowerPoisonous" col="4" row="10"/>
 	<object type="PFlowerOpen" col="6" row="10"/>
 	<object type="Wall3" col="7" row="10"/>
-	<object type="DemonSouth" col="8" row="10"/>
+	<object type="LaserGun" col="8" row="10"/>
 	<object type="Wall3" col="9" row="10"/>
 	<object type="Crystal" col="11" row="10"/>
 	<object type="Flower" col="12" row="10"/>
@@ -162,7 +161,7 @@
 	<object type="Wall3" col="5" row="11"/>
 	<object type="Wall3" col="6" row="11"/>
 	<object type="Wall3" col="7" row="11"/>
-	<object type="LaserGun" col="8" row="11"/>
+	<object type="Wall3" col="8" row="11"/>
 	<object type="Wall3" col="9" row="11"/>
 	<object type="Wall3" col="10" row="11"/>
 	<object type="Wall3" col="11" row="11"/>
