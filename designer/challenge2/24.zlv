@@ -28,10 +28,10 @@
 	<object type="DemonWest" col="9" row="1"/>
 	<object type="Wall3" col="10" row="1"/>
 	<object type="FlowerPoisonous" col="11" row="1"/>
-	<object type="FlowerPoisonous" col="12" row="1"/>
+	<object type="DemonEast" col="12" row="1"/>
 	<object type="Door" col="13" row="1"/>
 	<object type="Treasure" col="14" row="1"/>
-	<object type="Treasure" col="15" row="1"/>
+	<object type="FlowerPoisonous" col="15" row="1"/>
 	<object type="Wall3" col="16" row="1"/>
 	<object type="Wall3" col="0" row="2"/>
 	<object type="Apple" col="1" row="2"/>
@@ -44,10 +44,11 @@
 	<object type="Egg" col="8" row="2"/>
 	<object type="Wall3" col="9" row="2"/>
 	<object type="Wall3" col="10" row="2"/>
-	<object type="FlowerPoisonous" col="11" row="2"/>
+	<object type="Treasure" col="11" row="2"/>
 	<object type="Key" col="12" row="2"/>
 	<object type="Wall3" col="13" row="2"/>
-	<object type="DemonEast" col="14" row="2"/>
+	<object type="FlowerPoisonous" col="14" row="2"/>
+	<object type="Treasure" col="15" row="2"/>
 	<object type="Wall3" col="16" row="2"/>
 	<object type="Wall3" col="0" row="3"/>
 	<object type="PFlowerClose" col="1" row="3"/>
