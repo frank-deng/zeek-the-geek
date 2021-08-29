@@ -181,6 +181,11 @@ objectInfo = [
 		'type':'Wall10',
 		'img':'image/33.gif',
 		'export':'stage.setObject(%d, %d, new Wall(10));',
+	},
+	{
+		'type':'Wall11',
+		'img':'image/34.gif',
+		'export':'stage.setObject(%d, %d, new Wall(11));',
 	}
 ];
 

@@ -218,5 +218,6 @@ export const image={
 		{img:imageObj[1], x:0, y:8},
 		{img:imageObj[1], x:0, y:9},
 		{img:imageObj[1], x:1, y:2},
+		{img:imageObj[1], x:1, y:12},
 	]
 };
