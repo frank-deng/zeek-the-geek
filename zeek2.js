@@ -178,6 +178,9 @@ levelData = [
 		stage.setObject(11, 0, new Wall(3));
 		stage.setObject(12, 0, new Wall(3));
 		stage.setObject(13, 0, new Wall(3));
+		stage.setObject(14, 0, new Wall(3));
+		stage.setObject(15, 0, new Wall(3));
+		stage.setObject(16, 0, new Wall(3));
 
 		//Row 1
 		stage.setObject(0, 1, new Wall(3));
@@ -188,13 +191,18 @@ levelData = [
 		stage.setObject(10, 1, new Flower(false));
 		stage.setObject(12, 1, new LaserGun());
 		stage.setObject(13, 1, new Wall(3));
+		stage.setObject(14, 1, new Wall(6));
+		stage.setObject(15, 1, new Wall(6));
+		stage.setObject(16, 1, new Wall(3));
 
 		//Row 2
 		stage.setObject(0, 2, new Wall(3));
 		stage.setObject(4, 2, new Apple());
 		stage.setObject(9, 2, new Apple());
 		stage.setObject(13, 2, new Wall(3));
-		stage.setObject(16, 2, new Wall(10));
+		stage.setObject(14, 2, new Wall(6));
+		stage.setObject(15, 2, new Wall(6));
+		stage.setObject(16, 2, new Wall(3));
 
 		//Row 3
 		stage.setObject(0, 3, new Wall(3));
@@ -311,14 +319,6 @@ levelData = [
 		stage.setObject(15, 11, new Wall(3));
 		stage.setObject(16, 11, new Wall(3));
 
-		/* Custom script */
-		/*
-		var image = new Image();
-		image.src = 'egg/test.jpg';
-		stage.getObject(16, 2).onDraw = function(ctx, col, row) {
-			ctx.drawImage(image, IMAGE_W * 14, 0, IMAGE_W * 3, IMAGE_H * 3);
-		}
-		*/
 	}),
 	/* Level 3 */
 	new Stage(function(stage){
@@ -711,18 +711,6 @@ levelData = [
 		stage.setObject(15, 11, new Wall(2));
 		stage.setObject(16, 11, new Wall(2));
 
-		/* Custom script */
-		for (var i in stage.demon) {
-			stage.demon[i].turning = randomTurn;
-		}
-		stage.getObject(13, 7).onDestroy = function(stage, col, row){
-			stage.destroyObject(13, 5);
-			stage.destroyObject(13, 6);
-			stage.destroyObject(13, 8);
-			stage.destroyObject(13, 9);
-			stage.destroyObject(13, 10);
-		}
-		
 	}),
 	/* Level 5 */
 	new Stage(function(stage){
@@ -2304,10 +2292,10 @@ levelData = [
 		stage.setObject(7, 2, new Flower(false));
 		stage.setObject(9, 2, new PFlower(true));
 		stage.setObject(11, 2, new Treasure());
-		stage.setObject(12, 2, new Mushroom(true));
-		stage.setObject(13, 2, new PFlower(true));
-		stage.setObject(14, 2, new Door());
-		stage.demon.push(new Demon(stage, 15, 2, DIR_WEST));
+		stage.setObject(12, 2, new PFlower(false));
+		stage.setObject(13, 2, new Apple());
+		stage.demon.push(new Demon(stage, 14, 2, DIR_EAST));
+		stage.setObject(15, 2, new Wall(3));
 		stage.setObject(16, 2, new Wall(3));
 
 		//Row 3
@@ -2440,10 +2428,6 @@ levelData = [
 		stage.setObject(15, 11, new Wall(3));
 		stage.setObject(16, 11, new Wall(3));
 
-		/* Custom script */
-		stage.getObject(11, 2).onPick = function(player){
-			player.stage.destroyObject(14, 2);
-		}
 	}),
 	/* Level 14 */
 	new Stage(function(stage){
@@ -5592,6 +5576,5 @@ levelData = [
 
 	}),
 ];
-
 document.title='Zeek 2';
-new Game('zeek2', levelData);
+new Game('zeek2',levelData);
